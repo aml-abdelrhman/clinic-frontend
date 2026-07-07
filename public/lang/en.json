@@ -1,0 +1,1124 @@
+{
+  "emptyState": {
+    "search": {
+      "title": "No search results",
+      "description": "We couldn't find any results matching your search. Try changing your search terms or filters."
+    },
+    "data": {
+      "title": "No data available",
+      "description": "No data was found to display at this time."
+    },
+    "error": {
+      "title": "An error occurred",
+      "description": "Sorry, an error occurred while loading the data. Please try again."
+    },
+    "general": {
+      "title": "No items",
+      "description": "No items to display at this time."
+    },
+    "loading": {
+      "title": "Loading",
+      "description": "Please wait while content loads."
+    }
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for does not exist or has been moved.",
+    "backButton": "Go Back",
+    "homeButton": "Go Home"
+  },
+  "validation": {
+    "first_name_required": "First name is required",
+    "last_name_required": "Last name is required",
+    "valid_email": "Please enter a valid email address.",
+    "email_required": "Email is required.",
+    "email_invalid": "Invalid email format.",
+    "phone_min": "Phone number must be at least 5 characters.",
+    "phone_max": "Phone number cannot exceed 15 characters.",
+    "password_required": "Password is required.",
+    "password_invalid": "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
+    "password_max": "Password cannot exceed 15 characters.",
+    "agree_to_terms": "You must agree to the terms and conditions.",
+    "passwords_must_match": "Passwords must match.",
+    "otp_number_only": "OTP must contain only numbers.",
+    "otp_numbers_only": "OTP must contain only numbers.",
+    "otp_short": "OTP must be 4 digits.",
+    "otp_required": "OTP is required.",
+    "recipient_name_required": "Recipient name is required.",
+    "city_required": "City is required.",
+    "district_required": "District is required.",
+    "street_required": "Street is required.",
+    "postal_code_digits": "Postal code must be exactly 5 digits."
+  },
+  "This action can not be undone": "This action can not be undone",
+  "Are you sure": "Are you sure?",
+  "Are You sure": "Are you sure?",
+  "Reload": "Reload",
+  "Account": "Account",
+  "My Account": "My Account",
+  "Sign Out": "Sign Out",
+  "Terms and Conditions": "Terms & Conditions",
+  "Size Guide": "Size Guide",
+  "About Us": "About Us",
+  "Products": "Products",
+  "Sustainability": "Sustainability",
+  "Shop Here": "Shop Here",
+  "Sign Up": "Sign Up",
+  "Frist Name": "Frist Name",
+  "Last Name": "Last Name",
+  "Password": "Password",
+  "Email": "Email",
+  "First Name": "First Name",
+  "Enter your first name": "Enter your first name",
+  "Enter your last name": "Enter your last name",
+  "Enter your email": "Enter your email",
+  "Enter your phone number": "Enter your phone number",
+  "Enter your password": "Enter your password",
+  "I agree to the": "I agree to the",
+  "terms and conditions": "terms and conditions",
+  "Registered successfully": "Registered successfully",
+  "Show password": "Show password",
+  "Hide password": "Hide password",
+  "Login with gmail": "Login with gmail",
+  "Google login link is unavailable": "Google login link is unavailable",
+  "Already have an account": "Already have an account?",
+  "Login": "Login",
+  "Dont have an account": "Don't have an account?",
+  "Logged in successfully": "Logged in successfully",
+  "Remember me": "Remember me",
+  "Forgot your password": "Forgot your password?",
+  "OR": "OR",
+  "No categories found": "No categories found",
+  "No products found": "No products found",
+  "View": "View",
+  "OTP code has been sent to your email": "OTP code has been sent to your email",
+  "Forgot Password": "Forgot Password",
+  "Enter your email address below and we will send you a 5-digit password reset authentication code": "Enter your email address below and we will send you a 5-digit password reset authentication code",
+  "Home page": "Home page",
+  "Phone": "Phone",
+  "Location": "Location",
+  "Foundation Establishment": "Foundation Establishment (2021)",
+  "foundation": {
+    "title": "Foundation timeline",
+    "establishment": {
+      "title": "Foundation Establishment (2021)",
+      "points": [
+        "In 2021, we started the August District Foundation with the idea of having full control and transparency over how the money we raise for various causes is used.",
+        "Instead of donating money to other charitable organizations, we decided to create our own foundation.",
+        "This ensured that funds and resources could be easily monitored and sent directly to the source of the problem."
+      ]
+    },
+    "challenges": {
+      "title": "Challenges Of Registration & Approval",
+      "points": [
+        "Establishing a charitable foundation is extremely challenging due to very high standards and frequent application rejections.",
+        "Our application was rejected four times before finally being approved.",
+        "The entire process took around 1.5 years to complete."
+      ]
+    },
+    "charity": {
+      "title": "Official UK Charity Status (2023)",
+      "points": [
+        "In July 2023, we were officially admitted to the UK directory of charities.",
+        "We were assigned the charity number: 1203851.",
+        "This milestone enabled us to carry out our first mission in April 2024."
+      ]
+    },
+    "mission": {
+      "title": "Our Mission & Future Goals",
+      "points": [
+        "Our goal is to carry out one or two missions each year to support vulnerable communities around the world.",
+        "We have built a dedicated volunteer team to research and plan these missions effectively.",
+        "For transparency, we will physically attend and document each mission, publishing as much information as possible."
+      ]
+    }
+  },
+  "sustainability": {
+    "mainTitle": "Sustainability & Responsibility",
+    "sustainability": {
+      "title": "Sustainability",
+      "content": "We believe sustainability doesn't have to be perfect to make a difference. Real change happens when millions of people take small, imperfect steps toward more responsible choices."
+    },
+    "philosophy": {
+      "title": "Our Philosophy",
+      "content": "Sustainability should feel achievable, not overwhelming. Doing something imperfectly is better than doing nothing at all.",
+      "beliefsIntro": "We believe:",
+      "beliefs": [
+        "Progress matters more than perfection",
+        "Everyone can contribute in their own way",
+        "Small steps create real impact"
+      ]
+    },
+    "fashion": {
+      "title": "Fashion & Responsibility",
+      "content": "Fashion consumption is at an all-time high, contributing significantly to pollution and waste. While producing nothing would be the only way to leave zero impact, this is unrealistic in an industry that supports millions of livelihoods worldwide.",
+      "focus": [
+        "Long-term, realistic solutions",
+        "Ethical and safe working conditions",
+        "Reducing environmental impact across production"
+      ]
+    },
+    "reality": {
+      "title": "The Reality Of Sustainability",
+      "content": "Sustainability is a complex and evolving journey. Unfortunately, it's often misunderstood as restrictive, expensive, or all-or-nothing.",
+      "truths": [
+        "Every product has a cost",
+        "Fast fashion creates massive waste and pollution",
+        "Cheap fabrics often come with hidden environmental and health impacts"
+      ]
+    },
+    "beyond": {
+      "title": "Beyond Greenwashing",
+      "content": "To us, sustainability is not a marketing trend. It's about creating meaningful change, not guilt-driven purchasing. Since day one:",
+      "points": [
+        "Every production decision considers sustainability",
+        "Design and responsibility go hand in hand",
+        "Our name reflects our awareness of fashion's impact"
+      ]
+    },
+    "rightWay": {
+      "title": "Doing Things The Right Way",
+      "content": "We choose ethical production over shortcuts, even if it takes more time.",
+      "commitment": [
+        "Ethical manufacturing practices",
+        "Organic and recycled fabrics",
+        "High-quality pieces built to last"
+      ]
+    },
+    "transparency": {
+      "title": "Transparency & Progress",
+      "content": "Fashion is one of the most polluting industries, and we know there's still more work to be done. We're committed to being transparent about where we are and where we're improving.",
+      "goal": [
+        "Continuous improvement",
+        "Honest communication",
+        "Inspiring more conscious choices, no matter how small"
+      ]
+    },
+    "footer": "Every step counts. Join us in making more conscious choices."
+  },
+
+  "Frequently Asked Questions": "Frequently Asked Questions",
+  "Can i return the products": "Can i return the products?",
+  "yes after buying the product you have a 15 days to return it": "Yes, after buying the product you have a 15 days open window to return it!",
+  "Support": "Support",
+  "Help Center": "Help Center",
+  "Select Your Preferred Currency for pricing and payments across the platform": "Select Your Preferred Currency for pricing and payments across the platform",
+  "Maybe later": "Maybe later",
+  "Confirm Selection": "Confirm Selection",
+  "Select your currency": "Select your currency",
+  "SAR": "SAR",
+  "USD": "USD",
+  "US Dollar": "US Dollar",
+  "Saudi Riyal": "Saudi Riyal",
+  "Menu": "Menu",
+  "The Shop": "The Shop",
+  "Shop by category": "Shop by category",
+  "Categories": "Categories",
+  "Search": "Search",
+  "Price range": "Price range",
+  "Showing {{count}} results": "Showing {{count}} results",
+  "Reset": "Reset",
+  "Adding...": "Adding...",
+  "Hoodies and Jackets": "Hoodies & Jackets",
+  "Shop Now": "Shop Now",
+  "T-Shirts": "T-Shirts",
+  "Pants and Shorts": "Pants & Shorts",
+  "Accessories": "Accessories",
+  "Sweatpants": "Sweatpants",
+  "My Profile": "My Profile",
+  "Change Password": "Change Password",
+  "Order History": "Order History",
+  "My favorites": "My favorites",
+  "Logout": "Logout",
+  "Confirm": "Confirm",
+  "Cancel": "Cancel",
+  "Are you sure you want to log out of your account": "Are you sure you want to log out of your account?",
+  "Save changes": "Save changes",
+  "Current Password": "Current Password",
+  "New Password": "New Password",
+  "Confirm New Password": "Confirm New Password",
+  "Total": "Total",
+  "Items number": "Items number",
+  "Shipping costs": "Shipping costs",
+  "in-transit": "In Transit",
+  "delivered": "Delivered",
+  "cancelled": "Cancelled",
+  "processing": "Processing",
+  "The code was not sent": "The code was't sent?",
+  "Resend the code": "Resend the code",
+  "resend_in": "Resend in {{count}} seconds",
+  "resend_in_one": "Resend in {{count}} second",
+  "resend_in_two": "Resend in {{count}} seconds",
+  "resend_in_few": "Resend in {{count}} seconds",
+  "resend_in_many": "Resend in {{count}} seconds",
+  "Please wait before requesting another OTP": "Please wait before requesting another OTP",
+  "Verification successful": "Verification successful",
+  "A 5-digit verification code has been sent to It will be available within a minute": "A 5-digit verification code has been sent to {{email}} , It will be available within a minute",
+  "Product Name": "Product Name",
+  "unit_price": "Unit Price",
+  "Stock": "Stock",
+  "Actions": "Actions",
+  "Add to Cart": "Add to Cart",
+  "in-stock": "In Stock",
+  "out-of-stock": "Out of Stock",
+  "terms": {
+    "mainTitle": "Terms & Conditions",
+    "lastUpdated": "Last updated: March 2025",
+    "footer": "By using our services, you agree to these Terms & Conditions.",
+    "companyNumber": "Company Number: 1203851",
+    "appliesTo": "Applies to:",
+    "terms": {
+      "title": "Terms & Conditions",
+      "content": "By using our website and services, you agree to be bound by our Terms & Conditions, including all policies referenced on this page. These terms apply to all users of the site and govern your access to and use of our services.",
+      "points": [
+        "Operated by Broken Planet Market Ltd",
+        "Applies to all visitors, customers, and contributors",
+        "Continued use means acceptance of changes",
+        "Terms may be updated at any time"
+      ]
+    },
+    "returns": {
+      "title": "Returns",
+      "content": "We accept returns within 30 days of receiving your item, provided it is faulty or damaged and returned unused in its original condition.",
+      "points": [
+        "Returns must be arranged via support@brokenplanet.com",
+        "Customers cover return shipping costs",
+        "Return shipping costs will be deducted from refunds",
+        "Shipping fees are non-refundable"
+      ]
+    },
+    "customs": {
+      "title": "Customs Charges",
+      "content": "Any customs or import charges incurred are the responsibility of the customer and are not covered by Broken Planet."
+    },
+    "store": {
+      "title": "Online Store Terms",
+      "content": "By using our store, you confirm that you are legally eligible to do so and agree not to use our products or services for any unlawful purpose. You agree not to:",
+      "restrictions": [
+        "Violate any laws or regulations",
+        "Transmit harmful code or viruses",
+        "Misuse the service in any way",
+        "Violations may result in termination of service"
+      ]
+    },
+    "general": {
+      "title": "General Conditions",
+      "content": "We reserve the right to refuse service to anyone at any time. All content and services are provided for personal use only unless.",
+      "notes": [
+        "Credit card information is always encrypted",
+        "Unauthorized use, resale, or duplication is prohibited",
+        "Section headings are for convenience only"
+      ]
+    },
+    "accuracy": {
+      "title": "Accuracy Of Information",
+      "content": "We do our best to ensure all information is accurate and up to date, but we do not guarantee completeness or timeliness.",
+      "points": [
+        "Reliance on site information is at your own risk",
+        "Content may change without notice"
+      ]
+    },
+    "products": {
+      "title": "Products & Services",
+      "content": "Some products are available exclusively online and in limited quantities.",
+      "details": [
+        "Subject to availability and change",
+        "Colors may vary depending on screen display",
+        "Returns follow our Returns Policy only"
+      ]
+    },
+    "billing": {
+      "title": "Billing & Account Information",
+      "content": "We may refuse or cancel orders at our discretion. You agree to:",
+      "requirements": [
+        "Provide accurate and up-to-date account details",
+        "Update information as needed to complete transactions"
+      ]
+    },
+    "thirdParty": {
+      "title": "Third-Party Tools & Links",
+      "content": "We may provide access to third-party tools or links, which are offered 'as is.'",
+      "points": [
+        "We are not responsible for third-party content or services",
+        "Use is at your own risk"
+      ]
+    },
+    "comments": {
+      "title": "User Comments & Submissions",
+      "content": "Any feedback or submissions you provide may be used by us without restriction. You are responsible for:",
+      "responsibilities": [
+        "The accuracy of your comments",
+        "Ensuring content is lawful and respectful"
+      ]
+    },
+    "personalInfo": {
+      "title": "Personal Information",
+      "content": "Your personal data is handled according to our Privacy Policy."
+    },
+    "prohibited": {
+      "title": "Prohibited Uses",
+      "content": "You may not use our site or services for unlawful, abusive, misleading, or harmful activities.",
+      "points": ["Violation may result in immediate termination of access"]
+    },
+    "disclaimer": {
+      "title": "Disclaimer & Limitation Of Liability",
+      "content": "Our services and products are provided 'as is' without warranties of any kind. We are not liable for:",
+      "liabilities": [
+        "Service interruptions or errors",
+        "Indirect or consequential damages",
+        "Losses arising from use of the site or products"
+      ]
+    },
+    "termination": {
+      "title": "Termination",
+      "content": "These Terms remain in effect unless terminated by you or us. We may suspend or terminate access if terms are violated."
+    },
+    "governingLaw": {
+      "title": "Governing Law",
+      "content": "These Terms are governed by and interpreted in accordance with the laws of the United Kingdom."
+    },
+    "changes": {
+      "title": "Changes To Terms",
+      "content": "We may update these Terms at any time. Continued use of the site constitutes acceptance of any changes."
+    },
+    "contactUs": {
+      "title": "Contact Us",
+      "content": "For questions regarding these Terms, please contact:\n <a href='mailto:support@brokenplanet.com'>support@brokenplanet.com</a>"
+    }
+  },
+  "Size guide categories": "Size guide categories",
+  "Loading": "Loading",
+  "An error occurred": "An error occurred",
+  "No favorites found": "No favorites found",
+  "Your cart is empty": "Your cart is empty",
+  "Browse our products and add items to your cart to see them here.": "Browse our products and add items to your cart to see them here.",
+  "Go to Products": "Go to Products",
+  "Shopping Cart": "Shopping Cart",
+  "You have {{count}} items in your cart.": "You have {{count}} items in your cart.",
+  "Remove": "Remove",
+  "Order Summary": "Order Summary",
+  "Subtotal": "Subtotal",
+  "Shipping (calculated at checkout)": "Shipping (calculated at checkout)",
+  "Proceed to Checkout": "Proceed to Checkout",
+  "Clear Cart": "Clear Cart",
+  "Continue Shopping": "Continue Shopping",
+  "Product image": "Product image",
+  "Loading product...": "Loading product...",
+  "Failed to load product details.": "Failed to load product details.",
+  "Product ID": "Product ID",
+  "View Size Guide": "View Size Guide",
+  "Policies": "Policies",
+  "Dealing policies": "Dealing policies",
+  "Tamara": "Tamara",
+  "Tabby": "Tabby",
+  "/ Month for up to 24 months": "/ Month for up to 24 months",
+  "/ Month for up to 4 months": "/ Month for up to 4 months",
+  "Product actions": "Product actions",
+  "Buy Now": "Buy Now",
+  "Remove from favorites": "Remove from favorites",
+  "Add to favorites": "Add to favorites",
+  "Size": "Size",
+  "Quantity": "Quantity",
+  "Colors": "Colors",
+  "Decrease quantity": "Decrease quantity",
+  "Increase quantity": "Increase quantity",
+  "Team": "Team",
+  "Era": "Era",
+  "Default sorting": "Default sorting",
+  "Showing 1-9 of 86 results": "Showing 1-9 of 86 results",
+  "All categories": "All categories",
+  "All Products": "All Products",
+  "Previous page": "Previous page",
+  "Next page": "Next page",
+  "View cart": "View cart",
+  "View favorites": "View favorites",
+  "My addresses": "My addresses",
+  "Add address": "Add address",
+  "Edit address": "Edit address",
+  "Delete address": "Delete address",
+  "Set as default": "Set as default",
+  "Default": "Default",
+  "Address label": "Label (e.g. Home, Work)",
+  "Recipient name": "Recipient name",
+  "Delivery phone": "Delivery phone",
+  "City": "City",
+  "District": "District",
+  "Street": "Street",
+  "Building number": "Building number",
+  "Postal code": "Postal code",
+  "Delivery notes": "Delivery notes",
+  "Country": "Country",
+  "Saudi Arabia": "Saudi Arabia",
+  "No saved addresses": "No saved addresses",
+  "Add your first delivery address to checkout faster.": "Add your first delivery address to checkout faster.",
+  "Save address": "Save address",
+  "Checkout": "Checkout",
+  "Select delivery address": "Select delivery address",
+  "Place order": "Place order",
+  "Order placed": "Order placed",
+  "Add an address before placing your order.": "Add an address before placing your order.",
+  "Sign in to checkout": "Sign in to checkout",
+  "Verify your phone (OTP) to place orders.": "Verify your phone (OTP) to place orders.",
+  "Cart not ready": "Cart not ready",
+  "Shipping address": "Shipping address",
+  "Order details": "Order details",
+  "No orders yet": "No orders yet",
+  "Your orders will appear here.": "Your orders will appear here.",
+  "Profile updated successfully": "Profile updated successfully",
+  "Failed to update profile": "Failed to update profile",
+  "order": {
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    },
+    "payment_status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "rejected": "Rejected"
+    }
+  },
+  "Verify account": "Verify account",
+  "Enter the 4-digit verification code sent to your phone or email.": "Enter the 4-digit verification code sent to your phone or email.",
+  "Resend code": "Resend code",
+  "Resend code in {{seconds}}s": "Resend code in {{seconds}}s",
+  "Back to login": "Back to login",
+  "A new verification code has been sent": "A new verification code has been sent",
+  "Unable to resend verification code": "Unable to resend verification code",
+  "Please wait {{seconds}} seconds before requesting a new code": "Please wait {{seconds}} seconds before requesting a new code",
+  "Payment succeeded": "Payment succeeded",
+  "Payment failed": "Payment failed",
+  "Your payment has been processed successfully.": "Your payment has been processed successfully.",
+  "We could not complete your payment. Please try again.": "We could not complete your payment. Please try again.",
+  "Reference": "Reference",
+  "View my orders": "View my orders",
+  "Try payment again": "Try payment again",
+  "Back to home": "Back to home",
+  "cart": {
+    "added_success": "Product added to cart successfully",
+    "remove_success": "Product removed from cart successfully"
+  },
+  "medical": {
+    "appName": "MediCare",
+    "appTagline": "Health Platform",
+    "common": {
+      "changeLanguage": "Change language",
+      "settings": "Settings",
+      "signOut": "Sign Out",
+      "myProfile": "My Profile",
+      "search": "Search",
+      "searching": "Searching...",
+      "noResults": "No results found",
+      "doctors": "Doctors",
+      "notifications": "Notifications",
+      "notification": "Notification",
+      "viewAllNotifications": "View all notifications",
+      "newCount": "{{count}} new",
+      "orWith": "Or with",
+      "patient": "patient",
+      "admin": "admin",
+      "notFound": "Page not found — check the links"
+    },
+    "nav": {
+      "menu": "Menu",
+      "overview": "Overview",
+      "adminPanel": "Admin Panel",
+      "doctors": "Doctors",
+      "packages": "Packages",
+      "appointments": "Appointments",
+      "myRecords": "My Records",
+      "favorites": "Favorites",
+      "patients": "Patients",
+      "analytics": "Analytics",
+      "medicalBag": "Medical Bag",
+      "settings": "Settings"
+    },
+    "routes": {
+      "home": "Home",
+      "patientDashboard": "Patient Dashboard",
+      "adminDashboard": "Admin Dashboard",
+      "doctors": "Doctors",
+      "packages": "Medical Packages",
+      "cart": "Medical Bag",
+      "favorites": "Saved Doctors",
+      "records": "Medical Records",
+      "appointments": "Appointments",
+      "analytics": "Analytics",
+      "patients": "Patients",
+      "settings": "Settings"
+    },
+    "topbar": {
+      "searchPlaceholder": "Search doctors, packages…"
+    },
+    "auth": {
+      "welcomeBack": "Welcome Back",
+      "loginSubtitle": "Log in to Al-Shefaa Medical Platform",
+      "emailAddress": "Email Address",
+      "emailPlaceholder": "example@mail.com",
+      "password": "Password",
+      "signIn": "Sign In",
+      "verifying": "Verifying...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create an account",
+      "loggedInSuccess": "Logged in successfully",
+      "loginFailed": "Invalid email or password",
+      "registerTitle": "Create Account",
+      "registerSubtitle": "Join Al-Shefaa Medical Platform",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone Number",
+      "register": "Register",
+      "creating": "Creating account...",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "registerSuccess": "Account created! Please verify your email.",
+      "registerFailed": "Registration failed. Please try again.",
+      "successTitle": "Account Created!",
+      "successMessage": "Please check your email to verify your account.",
+      "goToLogin": "Go to Login",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "passwordMin": "Password must be at least 6 characters",
+        "firstNameShort": "First name is too short",
+        "lastNameShort": "Last name is too short",
+        "phoneMin": "Phone number must be at least 10 digits"
+      }
+    }
+  },
+
+  "hero": {
+    "title": "Exceptional Healthcare",
+    "subtitle": "With a Kind Heart",
+    "description": "A comprehensive medical clinic providing the latest health services with professionalism and high quality.",
+    "placeholder": "Search for specialty or doctor...",
+    "search": "Search"
+  },
+  "clinicCard": {
+    "title": "Medical Clinic Brighton",
+    "description": "Looking to make a switch to a new medical health clinic in Brighton? Just moved to the area and on the hunt for a reliable GP service? Whatever it is you’re looking for, Newbay Medical Clinic is ready to be the care service hub you can call up when you find yourself faced with an unexpected illness, condition, or concern. With experienced staff and a practice built on important values, you’ll notice the Newbay difference.",
+    "book": "Book Now",
+    "call": "Call Us"
+  },
+  "medical": {
+    "common": {
+      "specialties": "Medical Specialties"
+    },
+    "auth": {
+      "welcomeBack": "Welcome Back",
+      "loginSubtitle": "Please log in to access your account",
+      "emailAddress": "Email Address",
+      "emailPlaceholder": "example@email.com",
+      "password": "Password",
+      "signIn": "Sign In",
+      "verifying": "Verifying...",
+      "noAccount": "Don't have an account?",
+      "createAccount": "Create an account",
+      "invalidEmail": "Invalid email address",
+      "required": "This field is required",
+      "shortPassword": "Password must be at least 6 characters",
+      "successLogin": "Logged in successfully",
+      "invalidCredentials": "Invalid email or password"
+    }
+  },
+
+  "about": {
+    "title": "About Our Brighton-Based Practice",
+    "description": "We know visiting the doctor can feel a bit daunting. At Newbay Medical Clinic, we’ve shaped our practice to make every visit feel safe, calm, and comfortable. We keep our space clean and welcoming, and we’re mindful of your time—so you can focus on feeling cared for, not stressed.",
+    "button": "Learn More About Us"
+  },
+  "features": {
+    "title": "The Newbay Medical Clinic Difference",
+    "team": {
+      "title": "Experienced Team",
+      "desc": "Everyone on the Newbay Medical team is experienced, and knows how to provide high-quality medical care. Our staff are compassionate, professional, friendly, and love to provide the highest quality of medical services you can find."
+    },
+    "patient": {
+      "title": "Patient Centred Approach",
+      "desc": "At Newbay Medical Clinic, we’re all about you. Our patient-centred care means we listen, respect your choices, and focus on what matters most to you. We’re here to support you every step of the way, making sure you feel comfortable and confident in your healthcare decisions."
+    },
+    "efficiency": {
+      "title": "Efficiency",
+      "desc": "At our establishment, we strive to maintain a timely schedule for our services. While our goal is to provide efficient and streamlined processes for booking and attending appointments, occasional variations in timing may occur, ensuring a balance between prompt service and flexibility."
+    }
+  },
+
+  "aboutDetails": {
+    "title": "Our Vision: Shaping the Future of Exceptional Healthcare",
+    "longDesc": "At Newbay Medical Clinic, we believe that medicine is more than just science and procedures—it is a noble human mission that goes beyond traditional diagnosis and treatment. Our medical institution was founded on the principle of 'Holistic Care,' where we blend global medical expertise with the latest digital technologies to create a unique patient experience. We do not merely treat symptoms; we understand the individual as a whole. We are committed to providing an environment defined by transparency and innovation, where the doctor-patient relationship is built on absolute trust and mutual appreciation, ensuring every visitor leaves our clinic feeling fully confident in their health journey. We believe that continuous development is the only way to deliver the best of modern science in service of your health.",
+
+    "tech": {
+      "title": "Our Commitment to Technology and Innovation",
+      "text": "Newbay Medical Clinic is built upon an advanced digital infrastructure. We utilize the most secure Electronic Medical Records (EMR) systems, allowing us to track your health history with utmost precision. Through our innovative digital platform, you can book appointments, view test results, and communicate directly with your doctors anytime, anywhere. Integrating technology into the heart of our practice means minimizing human error, accelerating medical decision-making, and saving your precious time, so we can focus on what we do best: caring for you."
+    },
+
+    "team": {
+      "title": "A Team of Experts at Your Service",
+      "text": "Our team at Newbay is more than just medical staff; it is a constellation of consultants and specialists carefully selected not only for their deep academic expertise but for their genuine passion for medicine. We are committed to continuous investment in training our team on the latest global medical practices and the interpersonal skills required for patient care. At Newbay, we believe a successful doctor is one who combines diagnostic precision with compassion and kindness—a principle embraced by every member of our medical family to ensure you receive an unparalleled care experience."
+    },
+
+    "process": {
+      "title": "The Care Journey: How We Look After You",
+      "step1": "Consultative Reception: Upon your arrival, you are welcomed into an environment designed for your psychological comfort, where our team begins by meticulously documenting your health history to ensure a comprehensive understanding of your individual needs.",
+      "step2": "Advanced Diagnostics: We rely on the latest medical and laboratory technologies available globally to provide you with an accurate and rapid diagnosis based on documented scientific data and facts.",
+      "step3": "Personalized Care Plan: We do not rely on 'one-size-fits-all' solutions. Instead, we design a customized treatment plan based on your specific health status and personal goals, with periodic follow-ups to ensure the best sustainable outcomes."
+    },
+    "commitment": {
+      "title": "Our Pledge and Ethical Charter",
+      "text": "Our commitment at Newbay Medical Clinic extends far beyond clinical services. We are dedicated to adopting the highest global quality standards in every detail of our work. We promise to remain at the forefront of medical institutions that not only provide treatment but also uphold patient dignity, protect privacy, and stay abreast of the latest advancements in medical science to ensure a healthier future for you and your families. We never stop learning, and we are never satisfied with past successes, because our ambition is to be the gold standard by which excellence in healthcare is measured."
+    }
+  },
+
+  "location": {
+    "title": "Where To Find Us",
+    "description": "Looking for your new go-to medical clinic in Brighton and Bayside? Newbay Medical is based in the Brighton area.",
+    "button": "Book An Appointment",
+    "cards": {
+      "visit": { "title": "Visit Us" },
+      "call": { "title": "Call Us" },
+      "book": { "title": "Book Online", "desc": "Click Here" }
+    }
+  },
+
+  "footer": {
+    "acknowledgement": "We are committed to providing high-quality medical care in a safe and supportive environment for all our patients.",
+    "siteMap": "Site Map",
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "services": "Services",
+      "doctors": "Our Doctors"
+    },
+    "services": "Our Services",
+    "servicesList": {
+      "general": "General Practice",
+      "iron": "Iron Infusion",
+      "skin": "Skin Check",
+      "women": "Women's Health",
+      "weight": "Weight Management",
+      "mental": "Mental Health"
+    },
+    "contactUs": "Contact Us",
+    "openingHours": "Opening Hours",
+    "days": {
+      "monFri": "Mon - Fri",
+      "sat": "Sat",
+      "sun": "Sun"
+    },
+    "hours": "9am - 6pm",
+    "satHours": "9am - 1pm",
+    "closed": "Closed",
+    "holidays": "Public Holidays: Varies"
+  },
+
+  "booking": {
+    "title": "Book Your Medical Appointment with Us",
+    "description": "We are here to serve you and provide the healthcare you deserve, whether you need a routine consultation or urgent care. Our qualified medical team is ready to welcome you. Call us today to schedule your visit or use our online booking system.",
+    "call": "Call Us",
+    "book": "Book Online"
+  },
+  "news": {
+    "title": "Why Choose Newbay Clinic?",
+    "infection": {
+      "title": "Fast and Easy Booking",
+      "desc": "We value your time. Our booking system is designed to be quick and efficient. You can choose the doctor and time that best suits your personal schedule with just a few clicks."
+    },
+    "mask": {
+      "title": "Personalized Care for You",
+      "desc": "When booking, we listen to your concerns to direct you to the most suitable doctor for your condition. Our goal is to provide a comfortable and transparent medical experience from the moment you reach out."
+    },
+    "symptoms": {
+      "title": "Tips Before Booking:",
+      "list": {
+        "cough": "Prepare a brief summary of your medical history",
+        "sinus": "Clearly identify the symptoms you are experiencing",
+        "throat": "Mention any medications you are currently taking",
+        "fever": "Ask about any specific preparation required for the exam"
+      },
+      "note": "If you have an urgent medical condition, please inform our staff when booking to receive priority."
+    }
+  },
+
+  "doctors": {
+    "title": "Our Best Doctors",
+    "our_doctors": "Our Doctors"
+  },
+  "no_specialty": "General",
+  "price_from": "From",
+  "currency": "SAR",
+  "book_now": "Book Now",
+  "loading": "Loading",
+
+  "admin": {
+    "manage_doctors": "Manage Doctors",
+    "add_doctor": "Add New Doctor",
+    "edit_doctor": "Edit Doctor",
+    "name_ar": "Name (AR)",
+    "name_en": "Name (EN)",
+    "select_specialty": "Select Specialty",
+    "experience": "Years of Experience",
+    "price": "Starting Price",
+    "bio_ar_label": "Biography (Arabic)",
+    "bio_en_label": "Biography (English)",
+    "bio_ar": "Write biography in Arabic...",
+    "bio_en": "Write biography in English...",
+    "save": "Save Doctor",
+    "update": "Update Data",
+    "image": "Image",
+    "doctor": "Doctor",
+    "specialty": "Specialty",
+    "actions": "Actions",
+    "fields_required": "Please ensure you select a specialty and enter the price!",
+    "save_failed": "Save failed, please check your data",
+    "confirm_delete": "Are you sure? This doctor's data will be permanently deleted.",
+    "upload_image": "Doctor Image",
+    "choose_file": "Choose File",
+    "file_selected": "File Selected",
+    "no_file_chosen": "No file chosen",
+    "bio": "Doctor's Biography ",
+    "manage_services": "Manage Services",
+    "manage_schedules": "Manage Schedules",
+    "click_manage_full": "Click here for full schedule management",
+    "manage_schedules": "Manage Doctor Schedules",
+    "day": "Day",
+    "start_time": "Start Time",
+    "end_time": "End Time",
+    "status": "Status",
+    "action": "Action",
+    "available": "Available",
+    "confirm_delete": "Are you sure you want to delete this schedule?",
+    "no_schedules": "No schedules found.",
+    "unknown": "Unknown",
+    "schedule": " press for Schedule",
+    "manage_appointments": "Manage Appointments",
+    "dashboard_title": "Admin Dashboard",
+    "home": "Home",
+    "manage_doctors": "Manage Doctors",
+    "manage_specialties": "Manage Specialties",
+    "manage_services": "Manage Services",
+
+    "manage_specialties": "Manage Specialties",
+    "edit": "Edit Specialty",
+    "add": "Add New Specialty",
+    "name_label": "Specialty Name (AR/EN)",
+    "name_ar": "Name in Arabic",
+    "name_en": "Name in English",
+    "slug": "Slug (URL)",
+    "desc_label": "Specialty Description (AR/EN)",
+    "desc_ar": "Description in Arabic",
+    "desc_en": "Description in English",
+    "image_label": "Specialty Image",
+    "save": "Save",
+    "update": "Update",
+    "image": "Image",
+    "specialty": "Specialty",
+    "actions": "Actions",
+    "fields_required": "All fields must be filled",
+    "confirm_delete": "Are you sure you want to delete this?",
+    "dashboard_title": "Admin Dashboard",
+    "home": "Home",
+    "manage_doctors": "Manage Doctors",
+    "manage_specialties": "Specialties",
+    "dashboard": {
+      "eyebrow": "Clinic Operations",
+      "title": "System Admin Panel ",
+      "subtitle": "Real-time snapshot",
+      "totalDoctors": "Total Doctors",
+      "totalServices": "Available Services",
+      "newAppointments": "New Bookings",
+      "totalReviews": "Reviews",
+      "error": "Couldn't load data right now. Try refreshing the page.",
+      "chartEyebrow": "Booking trend · 7 days",
+      "chartTitle": "Recent Booking Trend",
+      "live": "Live",
+      "bookingsLabel": "Bookings",
+      "noChartData": "Not enough booking data yet"
+    }
+
+  },
+
+  "doctor": {
+    "name": "Doctor Name",
+    "name_ar": "Name (Arabic)",
+    "name_en": "Name (English)",
+    "specialty": "Specialty",
+    "select_specialty": "Select Specialty",
+    "bio_ar": "Bio (Arabic)",
+    "bio_en": "Bio (English)",
+    "experience": "Years of Experience",
+    "price": "Consultation Price",
+    "rating": "Rating",
+    "languages": "Languages (e.g., Arabic,English)",
+        "welcome": "Welcome, Doctor",
+    "professional_dashboard": "Professional Dashboard",
+    "patients_today": "Patients Today",
+    "confirmed_appointments": "Confirmed Appointments",
+    "emergency_cases": "Emergency Cases",
+    "years_experience": "Years of Experience",
+    "consultation_fee": "Consultation Fee",
+    "rating": "Rating",
+    "professional_bio": "Professional Bio",
+    "appointments_schedule": "Appointments Schedule",
+    "manage_sessions_desc": "View and manage all your upcoming sessions"
+  },
+  "common": {
+    "edit": "Edit",
+    "years": "years",
+    "enter": "Enter"
+  }
+
+  ,
+  "common": {
+    "save": "Save New Doctor",
+    "update": "Update Doctor Data",
+    "actions": "Actions"
+  },
+  "services": {
+    "title": "Our Medical Services",
+    "description": "We offer a wide range of specialized medical services to ensure the best care for you and your family.",
+    "services_available": "services available"
+  },
+  "common": {
+    "book_now": "Book Now",
+    "min": "min",
+    "currency": "SAR",
+    "select": "Select"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back_to_specialties": "Back to Specialties"
+  },
+  "specialty_services": "Specialty Services",
+  "specialty_doctors": "Specialty Doctors",
+  "min": "min",
+  "consultant": "Consultant",
+  "no_doctors_available": "No doctors are currently available",
+
+  "our_services": "Our Services",
+  "loading_services": " Loading Services",
+  "no_services": "No Services ",
+  "book_now": "Book Now",
+  "services_available": "Services Available",
+
+  "back": "Back",
+  "doctor_not_found": "Doctor not found",
+  "bio": "About the Doctor",
+  "no_bio": "No biography available at the moment.",
+  "experience": "Years of Experience",
+  "years": "years",
+  "fees": "Consultation Fees",
+  "currency": "EGP",
+  "languages": "Languages",
+  "book_now": "Book your appointment now",
+
+  "filter_by": "Filter by",
+  "specialty": "Specialty",
+  "doctor": "Doctor",
+  "sort": "Sort",
+  "sort_by": "Default Sort",
+  "price_high_to_low": "Price (High to Low)",
+  "rating_high_to_low": "Rating (High to Low)",
+  "all_services": "All Services",
+  "all_specialties": "All Specialties",
+  "all_doctors": "All Doctors",
+  "book_now": "Book Now",
+  "min": "min",
+  "show_all": "Show All",
+  "search_doctor": "Search Doctor",
+  "working_hours": "Working Hours",
+
+  "title": "Availability Schedule",
+  "add_slot": "Add New Slot",
+  "day": "Day",
+  "start": "Start Time",
+  "end": "End Time",
+  "actions": "Actions",
+  "save": "Save",
+  "sunday": "Sunday",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+
+  "sidebar_title": "sidebar",
+  "home": "Home",
+  "my_services": "My Services",
+  "appointments": "Appointments",
+  "availability": "Availability",
+
+  "title": "Availability Schedule",
+  "add_new": "Add New Time Slot",
+  "day": "Day",
+  "start": "Start Time",
+  "end": "End Time",
+  "actions": "Actions",
+  "add": "Add",
+  "error_exists": "Sorry, this slot already exists for this day!",
+  "confirm_delete": "Are you sure you want to delete this slot?",
+  "days": {
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday"
+  },
+
+  "my_medical_services": "My Medical Services",
+  "add_service": "Add Service",
+  "services_list": "Services List",
+  "image": "Image",
+  "service_name": "Service Name",
+  "price": "Price",
+  "duration": "Duration",
+  "status": "Status",
+  "actions": "Actions",
+  "currency": "EGP",
+  "min": "min",
+  "active": "Active",
+  "inactive": "Inactive",
+  "confirm_delete": "Are you sure?",
+
+  "add_new_service": "Add New Service",
+  "service_name_ar": "Service Name (AR)",
+  "service_name_en": "Service Name (EN)",
+  "price": "Price",
+  "duration_min": "Duration (min)",
+  "upload_image": "Click to upload image",
+  "saving": "Saving...",
+  "save_service": "Save Service",
+
+  "back": "Back",
+  "edit_service": "Edit Service",
+  "name_ar": "Name (AR)",
+  "name_en": "Name (EN)",
+  "price": "Price",
+  "duration_min": "Duration (min)",
+  "save_changes": "Save Changes",
+  "error_save": "An error occurred while saving, please check permissions.",
+
+  "add_new_service": "Add New Service",
+  "name_ar_placeholder": "Service Name (AR)",
+  "name_en_placeholder": "Service Name (EN)",
+  "price": "Price",
+  "duration": "Duration (min)",
+  "upload_instruction": "Click to upload image",
+  "saving": "Saving...",
+  "save_service": "Save Service",
+  "my_medical_services": "My Medical Services",
+  "add_service": "Add Service",
+  "services_list": "Services List",
+  "image": "Image",
+  "service_name": "Service Name",
+  "status": "Status",
+  "actions": "Actions",
+  "currency": "EGP",
+  "min": "min",
+  "active": "Active",
+  "inactive": "Inactive",
+  "confirm_delete": "Are you sure?",
+  "back": "Back",
+  "edit_service": "Edit Service",
+  "name_ar": "Name (AR)",
+  "name_en": "Name (EN)",
+  "save_changes": "Save Changes",
+  "error_save": "An error occurred while saving, please check permissions.",
+
+  "my_appointments": "My Appointments",
+  "book_new_appointment": "Book New Appointment",
+  "manage_your_bookings": "Manage your bookings and appointments",
+  "doctor": "Doctor",
+  "date": "Date",
+  "time": "Time",
+  "status": "Status",
+  "actions": "Actions",
+  "loading": "Loading...",
+  "no_appointments": "No appointments available",
+  "cancel": "Cancel",
+  "appointment_cancelled_successfully": "Appointment cancelled successfully",
+  "something_went_wrong": "Something went wrong, please try again later",
+  "confirmed": "Confirmed",
+  "cancelled": "Cancelled",
+  "services_list": "Services List",
+  "view_all_services": "View All Services",
+
+  "confirm_cancel_title": "Cancel Appointment?",
+  "confirm_cancel_appointment_message": "Are you sure you want to cancel this appointment? This action cannot be undone.",
+  "keep_appointment": "Keep it",
+  "yes_cancel": "Yes, Cancel",
+  "appointment_cancelled_successfully": "Appointment cancelled successfully",
+  "something_went_wrong": "Something went wrong",
+
+  "book_now": "Book Now",
+  "date": "Date",
+  "time": "Time",
+  "service": "Service",
+  "confirm": "Confirm",
+  "loading": "Loading",
+  "appointment_booked_successfully": "Appointment booked successfully",
+  "appointment_not_available": "This time slot is already booked",
+  "something_went_wrong": "Something went wrong",
+
+  "my_patients_appointments": "My Patients' Appointments",
+  "loading": "Loading...",
+  "no_appointments_found": "No confirmed appointments found",
+  "unknown_patient": "Unknown Patient",
+  "are_you_sure_to_cancel": "Are you sure you want to cancel this appointment?",
+  "appointment_cancelled_successfully": "Appointment cancelled successfully",
+  "something_went_wrong": "Something went wrong, please try again later",
+  "cancel": "Cancel",
+
+  "placeholder_ar": "Write your comment in Arabic here...",
+  "placeholder_en": "Write your comment in English here...",
+  "submit_button": "Submit Comment",
+
+  "patient_reviews": "Patient Reviews",
+  "here_you_can_see_all_feedback": "Here you can track your patients' feedback and ratings.",
+  "no_reviews_yet": "No reviews available yet.",
+  "anonymous": "Anonymous Patient",
+  "patient_feedback": "Patient Feedback",
+  "no_comment": "No comment added.",
+  "error_loading_reviews": "Sorry, an error occurred while loading the reviews.",
+  "my_reviews": "My Reviews",
+  "all_reviews": "All Reviews",
+
+  "favorites": "Favorites",
+  "my_favorite_doctors": "Your saved doctors list",
+  "book_now": "Book Now",
+  "no_favorites": "No doctors in your favorites list yet",
+  "removed_from_favorites": "Removed from favorites",
+  "added_to_favorites": "Added to favorites",
+  "login_required": "Login required",
+  "please_login_to_favorite": "Please login to manage your favorites",
+
+  "medical.auth.logout": "Logout",
+  "medical.routes.dashboard": "Dashboard",
+
+  "medical.topbar.searchPlaceholder": "Search doctors, services…",
+
+  "medical.common.doctors": "Doctors",
+  "professional_service_description": "Experience premium medical care tailored specifically to your health needs. Our expert medical team is dedicated to providing you with the highest standard of personalized attention, ensuring comfort, accuracy, and professional excellence in every step of your journey with us."
+,
+"confirm_delete": "Are you sure you want to delete this specialty?",
+    "confirm_force_delete": "This specialty is linked to doctors! If you proceed, both the specialty and all associated doctors will be permanently deleted. Are you sure?",
+  "filter_by_specialty": "Filter by Specialty",
+    "all_specialties": "All Specialties",
+    "no_reviews_found": "No reviews found",
+
+  "profile": {
+    "years_experience": "Years of Experience",
+    "consultation_fee": "Consultation Fee",
+    "rating": "Rating",
+    "patients_today": "Patients Today",
+    "confirmed_appointments": "Confirmed Appointments",
+    "professional_bio": "Professional Bio"
+  },
+  "common": {
+    "years": "Years"
+  
+}
+
+}
