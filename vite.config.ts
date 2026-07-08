@@ -13,24 +13,12 @@ const config = defineConfig({
     tanstackRouter({ 
       target: 'react', 
       autoCodeSplitting: true,
-      routesDirectory: './src/routes',
-      generatedRouteTree: './src/routeTree.gen.ts',
-    }),
+      // أضيفي هذا السطر ليوقف البحث عن المجلد المفقود
+      routesDirectory: '', 
+      generatedRouteTree: '', 
+    }) as any, 
     viteReact(),
   ],
-  // الجزء ده هو الحل لمشكلة سوبابيز في الـ Build
-  optimizeDeps: {
-    include: ['@supabase/supabase-js'],
-  },
-  build: {
-    commonjsOptions: {
-      include: [/node_modules/],
-    },
-    rollupOptions: {
-      // نضمن إن المكتبة مش معتبرة external بالخطأ
-      external: [],
-    },
-  },
   test: {
     environment: 'jsdom',
   },
