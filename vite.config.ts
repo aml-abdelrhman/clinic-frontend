@@ -5,23 +5,21 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-const config = defineConfig({
-  plugins: [
-    devtools(),
-    tsconfigPaths({ projects: ['./tsconfig.json'] }),
-    tailwindcss(),
-    tanstackRouter({ 
-      target: 'react', 
-      autoCodeSplitting: true,
-      // أضيفي هذا السطر ليوقف البحث عن المجلد المفقود
-      routesDirectory: '', 
-      generatedRouteTree: '', 
-    }) as any, 
-    viteReact(),
-  ],
-  test: {
-    environment: 'jsdom',
-  },
-})
+// نستخدم (as any) هنا لنتجاوز تعارض أنواع الـ Plugins بين Vite و Vitest
+export default defineConfig(({ command }) => {
+  const isBuild = command === 'build';
 
-export default config
+  return {
+    plugins: [
+      devtools(),
+      tsconfigPaths({ projects: ['./tsconfig.json'] }),
+      tailwindcss(),
+      // إذا كان build، نمرر false للـ plugin ليتم تجاهله
+      !isBuild ? tanstackRouter({ target: 'react' }) : false,
+      viteReact(),
+    ],
+    test: {
+      environment: 'jsdom',
+    },
+  } as any // هذا الجزء هو السحر الذي سيحل كل أخطاء Typescript
+})
