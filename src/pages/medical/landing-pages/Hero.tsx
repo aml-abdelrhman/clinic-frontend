@@ -25,14 +25,16 @@ export function Hero() {
         doctors
           ?.filter(
             (d: any) =>
-              d.name.ar.includes(q) || d.name.en?.toLowerCase().includes(q),
+              d?.name?.ar?.includes(q) ||
+              d?.name?.en?.toLowerCase()?.includes(q),
           )
           .slice(0, 3) || [],
       specialties:
         specialties
           ?.filter(
             (s: any) =>
-              s.name.ar.includes(q) || s.name.en?.toLowerCase().includes(q),
+              s?.name?.ar?.includes(q) ||
+              s?.name?.en?.toLowerCase()?.includes(q),
           )
           .slice(0, 3) || [],
     }
@@ -40,7 +42,7 @@ export function Hero() {
 
   const getSlug = (name: any) => {
     const nameEn = name?.en || name?.ar || 'doctor' // fallback للاسم بالعربي إذا غاب الإنجليزي
-    return nameEn.toLowerCase().replace(/\s+/g, '-').replace(/[.]/g, '')
+    return String(nameEn).toLowerCase().replace(/\s+/g, '-').replace(/[.]/g, '')
   }
 
   return (
@@ -96,7 +98,9 @@ export function Hero() {
                     >
                       {' '}
                       <User size={18} className="text-[#1C5D5E]" />
-                      <span className="font-bold">{d.name.ar}</span>
+                      <span className="font-bold">
+                        {d.name?.ar || d.name?.en}
+                      </span>
                       <span className="text-xs bg-[#e8efed] px-2 py-1 rounded text-[#1C5D5E]">
                         طبيب
                       </span>
@@ -116,7 +120,9 @@ export function Hero() {
                     >
                       {' '}
                       <Stethoscope size={18} className="text-[#1C5D5E]" />
-                      <span className="font-bold">{s.name.ar}</span>
+                      <span className="font-bold">
+                        {s.name?.ar || s.name?.en}
+                      </span>
                       <span className="text-xs bg-[#e8efed] px-2 py-1 rounded text-[#1C5D5E]">
                         تخصص
                       </span>
