@@ -16,3 +16,8 @@ node_modules/
 dist/
 .env
 .vercel
+node_modules
+.vite
+dist
+.env
+.DS_Store

@@ -1,25 +1,19 @@
-import { defineConfig } from 'vitest/config'
-import { devtools } from '@tanstack/devtools-vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import { tanstackRouter } from '@tanstack/router-plugin/vite'
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vitest/config';
+import { devtools } from '@tanstack/devtools-vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import viteReact from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 
-// نستخدم (as any) هنا لنتجاوز تعارض أنواع الـ Plugins بين Vite و Vitest
-export default defineConfig(({ command }) => {
-  const isBuild = command === 'build';
-
-  return {
-    plugins: [
-      devtools(),
-      tsconfigPaths({ projects: ['./tsconfig.json'] }),
-      tailwindcss(),
-      // إذا كان build، نمرر false للـ plugin ليتم تجاهله
-      !isBuild ? tanstackRouter({ target: 'react' }) : false,
-      viteReact(),
-    ],
-    test: {
-      environment: 'jsdom',
-    },
-  } as any // هذا الجزء هو السحر الذي سيحل كل أخطاء Typescript
-})
+// نستخدم (as any) لتجاوز تضارب تعريفات النوع بين Vitest و Vite
+export default defineConfig({
+  plugins: [
+    // هذه الأدوات لن تسبب لكِ خطأ الـ Build الخاص بالمجلدات
+    devtools(),
+    tsconfigPaths({ projects: ['./tsconfig.json'] }),
+    tailwindcss(),
+    viteReact(),
+  ],
+  test: {
+    environment: 'jsdom', // بيئة الاختبار للمكونات
+  },
+} as any);
