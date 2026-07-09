@@ -107,7 +107,11 @@ export const DoctorsList = () => {
     return doctors.filter((doc: any) => {
       const matchesSpec =
         specialtyId === 'all' || doc.specialty_id?.toString() === specialtyId
-      const matchesSearch = doc.name[currentLang]
+      const matchesSearch = (
+        (doc.name?.[currentLang] || doc.name?.ar || '') ??
+        ''
+      )
+        .toString()
         .toLowerCase()
         .includes(search.toLowerCase())
       return matchesSpec && matchesSearch
@@ -217,7 +221,7 @@ export const DoctorsList = () => {
                 <div
                   className="cursor-pointer group"
                   onClick={() => {
-                    const slug = doc.name.en
+                    const slug = (doc.name?.en || doc.name?.ar || 'doctor')
                       .toLowerCase()
                       .replace(/\s+/g, '-')
                       .replace(/[.]/g, '')
