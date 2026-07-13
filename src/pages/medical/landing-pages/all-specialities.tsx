@@ -38,35 +38,44 @@ export function ContentSection() {
 
         {!isLoading && !isError && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {specialties?.map((cat) => {
-              // const imageUrl = cat.image ? `${import.meta.env.VITE_API_BASE_URL.replace('/api', '')}/storage/${cat.image}` : null;
-              const imageUrl = getImageUrl(cat.image)
-              console.log(`Testing image URL for ${cat.slug}:`, imageUrl)
-              return (
-                <Link
-                  key={cat.id}
-                  to="/specialties/$slug"
-                  params={{ slug: cat.slug }}
-                  className="group bg-white p-0 hover:shadow-2xl transition-all duration-300 flex flex-col"
-                >
-                  {/* الصورة أصبحت أطول (aspect ratio 4/3) */}
-                  <div className="w-full aspect-[4/3] overflow-hidden bg-[#e8efed]">
-                    {imageUrl ? (
-                      <img
-                        src={getImageUrl(cat.image)}
-                        alt={cat.name[currentLang]}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        onError={(e) => {
-                          // هذا السطر مهم: إذا فشل تحميل الصورة (403)، سيحولها للـ placeholder
-                          e.currentTarget.src = '/default-avatar.png'
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <Stethoscope className="text-[#1B3A3A]" size={48} />
-                      </div>
-                    )}
-                  </div>
+           {specialties?.map((cat) => {
+  // 🔍 تشخيص شامل - هيوضح كل خطوة في بناء رابط الصورة
+  console.group(`🖼️ Image Debug: ${cat.slug}`)
+  console.log('1️⃣ RAW cat.image from API:', cat.image)
+  console.log('2️⃣ typeof cat.image:', typeof cat.image)
+  console.log('3️⃣ VITE_CLOUDINARY_BASE_URL:', import.meta.env.VITE_CLOUDINARY_BASE_URL)
+  console.log('4️⃣ Does image start with http?', cat.image?.startsWith('http'))
+  
+  const imageUrl = getImageUrl(cat.image)
+  console.log('5️⃣ FINAL constructed URL:', imageUrl)
+  console.groupEnd()
+
+  return (
+    <Link
+      key={cat.id}
+      to="/specialties/$slug"
+      params={{ slug: cat.slug }}
+      className="group bg-white p-0 hover:shadow-2xl transition-all duration-300 flex flex-col"
+    >
+      <div className="w-full aspect-[4/3] overflow-hidden bg-[#e8efed]">
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={cat.name[currentLang]}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onLoad={() => console.log(`✅ Image LOADED successfully: ${imageUrl}`)}
+            onError={(e) => {
+              console.error(`❌ Image FAILED to load: ${imageUrl}`)
+              console.error(`   Original cat.image value was: ${cat.image}`)
+              e.currentTarget.src = '/default-avatar.png'
+            }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <Stethoscope className="text-[#1B3A3A]" size={48} />
+          </div>
+        )}
+      </div>
 
                   {/* تقليل مساحة الكلام (Padding أقل و line-clamp أصغر) */}
                   {/* حاوية النص */}
