@@ -8,6 +8,7 @@ import {
   useGetServicesWithSpecialties,
   useGetSpecialties,
 } from '@/hooks/useQuery'
+import { getImageUrl } from '@/utils/imageUtils'
 import { BookingModal } from '@/pages/BookingModal'
 type SortOption = 'default' | 'price-desc' | 'rating-desc'
 
@@ -146,21 +147,9 @@ export function ServicesSection() {
                 params={{ id: service.id.toString() }}
                 className="block flex-1"
               >
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#e8efed]">
-                  {/* <img
-                    src={service.image_url || '/placeholder.jpg'}
-                    alt={service.name[currentLang]}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  /> */}
-
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-[#e8efed]">
                   <img
-                    src={
-                      service.image_url
-                        ? service.image_url.startsWith('http')
-                          ? service.image_url
-                          : `${import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '')}/storage/${service.image_url.replace('storage/', '')}`
-                        : '/placeholder.jpg'
-                    }
+                    src={getImageUrl(service.image_url, 'service')}
                     alt={service.name[currentLang]}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
@@ -176,9 +165,12 @@ export function ServicesSection() {
                     <div className="flex items-center gap-1.5">
                       <Clock size={16} /> {service.duration_minutes} {t('min')}
                     </div>
-                    <div className="flex items-center gap-1.5 font-bold">
-                      <DollarSign size={16} /> {service.price}
-                    </div>
+                    <span className="text-base font-extrabold text-[#0E2A2E]">
+                      {service.price}{' '}
+                      <span className="text-xs font-medium text-[#5C7873]">
+                        {currentLang === 'ar' ? 'ج.م' : 'EGP'}
+                      </span>
+                    </span>
                   </div>
                 </div>
               </Link>

@@ -100,7 +100,18 @@ export const useGetDoctor = (id: number) => {
   })
 }
 
-// جلب الخدمات (عامة أو فلترة بطبيب معين)
+export const useGetMyDoctorProfile = () => {
+  return useQuery({
+    queryKey: ['doctor-profile'],
+    queryFn: async () => {
+      const res = await api.get('/doctor/profile')
+      if (!res?.data?.data) {
+        throw new Error('Doctor profile not found in response')
+      }
+      return res.data.data
+    },
+  })
+}
 export const useGetServices = (doctorId?: number) => {
   return useQuery({
     queryKey: ['services', doctorId],
@@ -244,10 +255,43 @@ export const useGetFavorites = () => {
   })
 }
 
-// ==========================================================================
-// Doctor (خدمات الطبيب، جدول المواعيد، الحجوزات، التقييمات)
-// ==========================================================================
 
+// ==========================================
+// Doctor Self-Profile Hooks (داشبورد الطبيب لنفسه)
+// ==========================================
+
+export const useUpdateDoctordata = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: Record<string, any> }) =>
+      api.post(`/doctor/profile/${id}`, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['doctor-profile'] })
+    },
+    onError: (error: any) => {
+      console.error('Update doctor data error:', error.response?.data || error.message)
+    },
+  })
+}
+
+/**
+ * تحديث صورة الطبيب فقط
+ */
+export const useUpdateDoctorImage = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: FormData }) =>
+      api.post(`/doctor/profile/${id}/image`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['doctor-profile'] })
+    },
+    onError: (error: any) => {
+      console.error('Update doctor image error:', error.response?.data || error.message)
+    },
+  })
+}
 // جلب خدمات الطبيب الحالي (من التوكن)
 export const useGetDoctorServices = () => {
   return useQuery({
@@ -532,6 +576,69 @@ export const useGetDoctorReviews = () => {
 // ==========================================================================
 // Admin (إدارة التخصصات، الأطباء، الخدمات، المواعيد، الحجوزات، التقييمات، الإحصائيات)
 // ==========================================================================
+// جلب قائمة كل المستخدمين (للأدمن)
+export const useGetUsers = () => {
+  return useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const token = useAuthStore.getState().token
+      const response = await api.get('/admin/users', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/json',
+        },
+      })
+      return response.data
+    },
+  })
+}
+
+// تحديث دور المستخدم (للأدمن)
+export const useUpdateUserRole = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({ id, role }: { id: number; role: string }) => {
+      const token = useAuthStore.getState().token
+      return await api.put(
+        `/admin/users/${id}/role`,
+        { role },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            Accept: 'application/json',
+          },
+        }
+      )
+    },
+    onSuccess: () => {
+      // تحديث قائمة المستخدمين بعد تغيير الرول
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+  })
+}
+
+// حذف مستخدم (للأدمن)
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async (id: number) => {
+      const token = useAuthStore.getState().token
+      // تأكدي أن الرابط يبدأ بـ /api/admin/users/ وليس admin/admin/users/
+      return await api.delete(`/admin/users/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Accept': 'application/json',
+        },
+      })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] })
+    },
+    onError: (err) => {
+      console.error("خطأ في الحذف:", err);
+    }
+  })
+}
 
 // إضافة تخصص جديد
 export const useAddSpecialty = () => {
@@ -812,13 +919,4 @@ export const useDeleteReview = () => {
   })
 }
 
-// جلب إحصائيات لوحة تحكم الأدمن
-export const useGetAdminStats = () => {
-  return useQuery({
-    queryKey: ['admin-stats'],
-    queryFn: async () => {
-      const response = await api.get('/admin/dashboard-stats')
-      return response.data.data
-    },
-  })
-}
+ 

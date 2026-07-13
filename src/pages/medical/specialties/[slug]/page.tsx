@@ -18,7 +18,7 @@ import {
   ChevronLeft,
 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-
+import { getImageUrl } from '@/utils/imageUtils' // تأكدي من المسار الصحيح
 
 export default function SpecialtyPage() {
   const { slug } = useParams({ from: '/specialties/$slug' })
@@ -50,14 +50,6 @@ export default function SpecialtyPage() {
   const specialtyServices = allServices?.filter(
     (serv: any) => serv.doctor?.specialty_id === specialty.id,
   )
-
-  const baseUrl = import.meta.env.VITE_API_BASE_URL.replace('/api', '')
-
-  const getImageUrl = (url: string | null) => {
-    if (!url) return null
-    if (url.startsWith('http')) return url
-    return `${import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '')}/storage/${url.replace('storage/', '')}`
-  }
 
   return (
     <div className="min-h-screen bg-slate-50 pb-20" dir={i18n.dir()}>
@@ -108,7 +100,9 @@ export default function SpecialtyPage() {
                   }
                   className="group bg-white rounded-3xl p-3 border border-slate-100 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 >
-<div className="w-full h-80 rounded-3xl overflow-hidden mb-6 shadow-inner">                    <img
+                  <div className="w-full h-80 rounded-3xl overflow-hidden mb-6 shadow-inner">
+                    {' '}
+                    <img
                       // src={service.image_url || '/default-service.png'}
                       src={
                         getImageUrl(service.image_url) || '/default-service.png'
@@ -147,7 +141,7 @@ export default function SpecialtyPage() {
               {specialtyDoctors?.map((doctor: any) => (
                 <div
                   key={doctor.id}
-                   onClick={() => {
+                  onClick={() => {
                     const slug = doctor.name.en
                       .toLowerCase()
                       .replace(/\s+/g, '-')

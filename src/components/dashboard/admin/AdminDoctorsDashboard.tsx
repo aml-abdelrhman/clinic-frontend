@@ -25,6 +25,7 @@ import {
 } from 'lucide-react'
 import type { Doctor } from '@/hooks/useQuery'
 import { Link } from '@tanstack/react-router'
+
 export default function AdminDoctorsDashboard() {
   const { t, i18n } = useTranslation()
   const currentLang = i18n.language as 'ar' | 'en'
@@ -45,6 +46,8 @@ export default function AdminDoctorsDashboard() {
   const [formData, setFormData] = useState({
     name_ar: '',
     name_en: '',
+    email: '',
+    password: '',
     specialty_id: '',
     bio_ar: '',
     bio_en: '',
@@ -66,8 +69,6 @@ export default function AdminDoctorsDashboard() {
 
   const [expandedDoctorId, setExpandedDoctorId] = useState<number | null>(null)
 
-  // نحتاج لجلب المواعيد لكل طبيب (أو جلبها عند الطلب)
-  // يفضل عمل Hook يقوم بجلب مواعيد طبيب معين
   const { data: schedule } = useGetDoctorAvailabilityAdmin(
     expandedDoctorId as any,
   )
@@ -79,6 +80,24 @@ export default function AdminDoctorsDashboard() {
   const refreshData = () =>
     queryClient.invalidateQueries({ queryKey: ['doctors'] })
 
+  const resetForm = () => {
+    setEditingId(null)
+    setImage(null)
+    setFormData({
+      name_ar: '',
+      name_en: '',
+      email: '',
+      password: '',
+      specialty_id: '',
+      bio_ar: '',
+      bio_en: '',
+      years_experience: '',
+      price_from: '',
+      languages: '',
+      rating: '5',
+    })
+  }
+
   const startEdit = (doc: Doctor) => {
     const name = parseSafe(doc.name)
     const bio = parseSafe(doc.bio)
@@ -86,6 +105,8 @@ export default function AdminDoctorsDashboard() {
     setFormData({
       name_ar: name.ar || '',
       name_en: name.en || '',
+      email: '', // بيانات الدخول ما بتترجعش هنا لأسباب أمان
+      password: '',
       specialty_id: doc.specialty_id?.toString() || '',
       bio_ar: bio.ar || '',
       bio_en: bio.en || '',
@@ -103,11 +124,18 @@ export default function AdminDoctorsDashboard() {
       return
     }
 
+    // عند الإضافة فقط: الإيميل والباسورد إجباريين لإنشاء الـ User
+    if (!editingId && (!formData.email || !formData.password)) {
+      alert(
+        t('admin.email_password_required') ||
+          'الإيميل وكلمة السر مطلوبين لإنشاء حساب الطبيب',
+      )
+      return
+    }
+
     const data = new FormData()
-    data.append(
-      'name',
-      JSON.stringify({ ar: formData.name_ar, en: formData.name_en }),
-    )
+    data.append('name_ar', formData.name_ar)
+    data.append('name_en', formData.name_en)
     data.append(
       'bio',
       JSON.stringify({ ar: formData.bio_ar, en: formData.bio_en }),
@@ -117,6 +145,12 @@ export default function AdminDoctorsDashboard() {
     data.append('years_experience', formData.years_experience || '0')
     data.append('rating', formData.rating || '5')
 
+    // الإيميل والباسورد بيتبعتوا بس وقت إنشاء طبيب جديد
+    if (!editingId) {
+      data.append('email', formData.email)
+      data.append('password', formData.password)
+    }
+
     const langs = formData.languages
       .split(',')
       .map((l) => l.trim())
@@ -124,12 +158,10 @@ export default function AdminDoctorsDashboard() {
     data.append('languages', JSON.stringify(langs))
     if (image) data.append('image', image)
 
-    // --- كود التشخيص ---
     const config = {
       onSuccess: () => {
         refreshData()
-        setEditingId(null)
-        setImage(null)
+        resetForm()
         alert('تمت العملية بنجاح')
       },
       onError: (error: any) => {
@@ -149,7 +181,9 @@ export default function AdminDoctorsDashboard() {
             '📋 رسالة الخطأ:',
             error.response.data.message || error.response.data,
           )
-          // هذا يظهر مكان الخطأ في ملفات لارافيل إذا كان APP_DEBUG=true
+          if (error.response.data.errors) {
+            console.error('📋 أخطاء التحقق:', error.response.data.errors)
+          }
           if (error.response.data.exception) {
             console.error('📂 الملف:', error.response.data.file)
             console.error('🔢 السطر:', error.response.data.line)
@@ -166,6 +200,7 @@ export default function AdminDoctorsDashboard() {
       ? updateDoctor({ id: editingId, formData: data }, config)
       : addDoctor(data, config)
   }
+
   const confirmDelete = (id: number) => {
     if (window.confirm(t('admin.confirm_delete'))) {
       deleteDoctor(id, { onSuccess: refreshData })
@@ -182,7 +217,6 @@ export default function AdminDoctorsDashboard() {
     if (!image) return '/default-doctor.png'
     if (image.startsWith('http://') || image.startsWith('https://'))
       return image
-    // هذا المسار للصور القديمة المخزنة محلياً في لارافيل
     return `${import.meta.env.VITE_API_BASE_URL.replace(/\/api\/?$/, '')}/storage/${image}`
   }
 
@@ -190,12 +224,12 @@ export default function AdminDoctorsDashboard() {
     <ProtectedLayout allowedRoles={['admin']}>
       <div className="pt-24 px-2 sm:px-6 pb-8 w-full max-w-7xl mx-auto space-y-6 bg-slate-50 min-h-screen">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2 mb-6">
-          {/* العنوان */}
           <h1 className="text-2xl sm:text-4xl font-black text-[#0E2A2E] flex items-center gap-3">
             <Stethoscope className="text-[#2D6A4F]" size={32} />
             {t('admin.manage_doctors')}
           </h1>
-        </div>{' '}
+        </div>
+
         <div ref={formRef}>
           <Card className="border-t-4 border-t-[#2D6A4F] rounded-2xl shadow-lg w-full">
             <CardHeader>
@@ -221,6 +255,28 @@ export default function AdminDoctorsDashboard() {
                 />
               </div>
 
+              {/* حقول بيانات الدخول - تظهر فقط عند إضافة طبيب جديد */}
+              {!editingId && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-slate-50 rounded-xl border border-slate-200">
+                  <Input
+                    type="email"
+                    placeholder="البريد الإلكتروني للطبيب / Doctor Email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                  />
+                  <Input
+                    type="password"
+                    placeholder="كلمة السر / Password"
+                    value={formData.password}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
+                  />
+                </div>
+              )}
+
               <select
                 className="w-full p-2.5 border rounded-lg bg-white"
                 value={formData.specialty_id}
@@ -235,9 +291,8 @@ export default function AdminDoctorsDashboard() {
                   </option>
                 ))}
               </select>
-              {/* Bio Section with Proper Spacing */}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* حقل اللغة العربية */}
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-[#2D6A4F] mb-1">
                     {t('admin.bio_ar_label')}
@@ -252,7 +307,6 @@ export default function AdminDoctorsDashboard() {
                   />
                 </div>
 
-                {/* حقل اللغة الإنجليزية */}
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-[#2D6A4F] mb-1">
                     {t('admin.bio_en_label')}
@@ -323,9 +377,20 @@ export default function AdminDoctorsDashboard() {
                   t('admin.save')
                 )}
               </Button>
+
+              {editingId && (
+                <Button
+                  variant="outline"
+                  onClick={resetForm}
+                  className="w-full"
+                >
+                  {t('admin.cancel') || 'إلغاء التعديل'}
+                </Button>
+              )}
             </CardContent>
           </Card>
         </div>
+
         <div className="bg-white rounded-2xl shadow-sm p-4 w-full flex items-center gap-3">
           <label className="text-sm font-bold text-[#2D6A4F] whitespace-nowrap">
             {t('filter_by_specialty') || 'فلترة حسب التخصص'}
@@ -343,16 +408,17 @@ export default function AdminDoctorsDashboard() {
             ))}
           </select>
         </div>
+
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden w-full">
           <table className="w-full text-right hidden md:table">
             <thead className="bg-slate-100 text-[#2D6A4F]">
               <tr>
                 <th className="px-4 py-3">{t('admin.image')}</th>
                 <th className="px-4 py-3">{t('admin.doctor')}</th>
-                <th className="px-4 py-3">{t('admin.specialty')}</th>{' '}
+                <th className="px-4 py-3">{t('admin.specialty')}</th>
                 <th className="px-4 py-3">{t('admin.bio')}</th>
                 <th className="px-4 py-3 text-center">{t('admin.actions')}</th>
-                <th className="px-4 py-3 text-center">إدارة المواعيد</th>{' '}
+                <th className="px-4 py-3 text-center">إدارة المواعيد</th>
               </tr>
             </thead>
             <tbody>
@@ -394,7 +460,6 @@ export default function AdminDoctorsDashboard() {
 
                   <td className="px-4 py-2 text-center">
                     <div className="flex items-center justify-center gap-2">
-                      {/* زر الانتقال للمواعيد */}
                       <Link
                         to="/dashboard/admin/work-schedule/$doctorId"
                         params={{ doctorId: String(doc.id) }}

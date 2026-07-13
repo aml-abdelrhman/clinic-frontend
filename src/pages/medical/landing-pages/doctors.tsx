@@ -126,14 +126,33 @@ export const DoctorsList = () => {
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi])
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi])
 
+  const getImageUrl = (imagePath: string | null | undefined) => {
+    if (!imagePath) return '/default-avatar.png'
+
+    // 1. ترقية الرابط إلى https فوراً إذا كان يبدأ بـ http
+    let securePath = imagePath.startsWith('http://')
+      ? imagePath.replace('http://', 'https://')
+      : imagePath
+
+    // 2. إذا كان رابطاً سحابياً، أرجعيه كما هو
+    if (securePath.startsWith('https://')) return securePath
+
+    // 3. بناء الرابط المحلي مع التأكد من استخدام https
+    const baseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '')
+    const baseSecure = baseUrl.replace('http://', 'https://')
+
+    return `${baseSecure}/storage/${securePath.replace('storage/', '')}`
+  }
+
   if (isLoading)
     return (
       <div className="py-20 text-center text-[#2D6A4F]">جاري التحميل...</div>
     )
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-17" dir={dir}>
-      <div className="flex justify-between items-end mb-8">
+    <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-17" dir={dir}>
+      {/* الهيدر: يتكدس عمودي على الموبايل، أفقي على الشاشات الأكبر */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4 mb-6 md:mb-8">
         <div>
           <div className="flex items-center gap-2 text-[#2D6A4F] mb-1">
             <Stethoscope size={20} />
@@ -141,12 +160,12 @@ export const DoctorsList = () => {
               {t('doctors.our_doctors')}
             </h6>
           </div>
-          <h2 className="text-3xl font-black text-[#0E2A2E]">
+          <h2 className="text-2xl sm:text-3xl font-black text-[#0E2A2E]">
             {t('doctors.title')}
           </h2>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 self-end sm:self-auto">
           <button
             onClick={scrollPrev}
             className="p-2 rounded-full border hover:bg-[#2D6A4F] hover:text-white transition-all"
@@ -162,14 +181,15 @@ export const DoctorsList = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 mb-8 bg-gray-50 p-4 rounded-xl items-center justify-start">
+      {/* شريط الفلاتر: ياخد العرض كامل ويترتب عمودي على الموبايل */}
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-6 md:mb-8 bg-gray-50 p-4 rounded-xl sm:items-center">
         <div className="flex items-center gap-2 text-[#2D6A4F]">
           <Filter size={18} />
           <span className="font-bold text-sm">{t('filter_by')}:</span>
         </div>
 
         <select
-          className="p-2 rounded-lg border border-gray-200 outline-none text-sm bg-white min-w-[150px]"
+          className="w-full sm:w-auto p-2 rounded-lg border border-gray-200 outline-none text-sm bg-white sm:min-w-[150px]"
           onChange={(e) => setSpecialtyId(e.target.value)}
         >
           <option value="all">{t('specialty')}</option>
@@ -180,7 +200,7 @@ export const DoctorsList = () => {
           ))}
         </select>
 
-        <div className="relative w-64">
+        <div className="relative w-full sm:w-64">
           <input
             type="text"
             placeholder={t('search_doctor')}
@@ -194,8 +214,11 @@ export const DoctorsList = () => {
         </div>
       </div>
 
+      {/* الكاروسيل:
+          - على الموبايل: كارت طبيب واحد ياخد أغلب الشاشة + جزء صغير من اللي بعده كـ "تلميح" إن فيه سكرول
+          - من sm فأكبر: بترجع تدريجياً لعدد أكتر في نفس الوقت */}
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6">
+        <div className="flex gap-4 sm:gap-6">
           {filteredDoctors.map((doc: any) => {
             const isFav = user?.id
               ? apiFavorites?.some((f: any) => f.doctor_id === doc.id)
@@ -204,7 +227,7 @@ export const DoctorsList = () => {
             return (
               <div
                 key={doc.id}
-                className="flex-[0_0_40%] md:flex-[0_0_20%] lg:flex-[0_0_16%] cursor-pointer group relative"
+                className="flex-[0_0_78%] xs:flex-[0_0_65%] sm:flex-[0_0_32%] md:flex-[0_0_22%] lg:flex-[0_0_16%] cursor-pointer group relative"
               >
                 <button
                   onClick={(e) => handleToggle(e, doc.id, isFav)}
@@ -234,15 +257,13 @@ export const DoctorsList = () => {
                 >
                   <div className="relative mb-4 w-full">
                     <img
-                      src={
-                        doc.image
-                          ? doc.image.startsWith('http')
-                            ? doc.image
-                            : `${import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '')}/storage/${doc.image.replace('storage/', '')}`
-                          : '/default-avatar.png'
-                      }
+                      src={getImageUrl(doc.image)}
                       className="w-full aspect-[2/3] object-cover rounded-xl shadow-inner"
                       alt={doc.name[currentLang]}
+                      onError={(e) => {
+                        // إذا فشل تحميل الصورة الأصلية، استبدليها بالصورة الافتراضية
+                        e.currentTarget.src = '/default-avatar.png'
+                      }}
                     />
                   </div>
 
@@ -261,4 +282,4 @@ export const DoctorsList = () => {
       </div>
     </div>
   )
-}
+} 

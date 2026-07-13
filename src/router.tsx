@@ -18,6 +18,7 @@ import EditServicePage from '@/components/dashboard/admin/EditService'; // تأ�
 import AdminAvailabilityManagement from '@/components/dashboard/admin/AdminAvailabilityManagement';
 import AdminAppointments from '@/components/dashboard/admin/AdminAppointments';
 import AdminReviews from '@/components/dashboard/admin/AdminReviews';
+import AdminUsersDashboard from '@/components/dashboard/admin/Users'
 
 import DoctorDashboard from '@/components/dashboard/doctor/page';
 import PatientDashboard from '@/components/dashboard/patient/page';
@@ -112,6 +113,13 @@ export const adminReviewsRoute = createRoute ({
   component: AdminAvailabilityManagement 
 });
 
+
+const adminUsersRoute = createRoute({
+   getParentRoute:() => adminLayoutRoute,
+    path: 'users',  
+   component: AdminUsersDashboard,
+})
+
 // 3. مسارات أخرى
 const doctorRoute = createRoute({ getParentRoute: () => rootRoute, path: '/dashboard/doctor', component: DoctorDashboard });
 const patientRoute = createRoute({ getParentRoute: () => rootRoute, path: '/dashboard/patient', component: PatientDashboard });
@@ -200,7 +208,8 @@ export const router = createRouter({
       editServiceRoute,
       doctorScheduleRoute,
       adminAppointmentsRoute,
-      adminReviewsRoute
+      adminReviewsRoute,
+      adminUsersRoute
     ]),
     doctorLayoutRoute.addChildren([
         doctorDashboardRoute,

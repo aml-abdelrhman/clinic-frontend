@@ -8,9 +8,8 @@ import {
   useGetDoctors,
   useGetServices,
   useGetAvailability,
-  useCreateAppointment
 } from '@/hooks/useQuery'
-
+import { getImageUrl } from '@/utils/imageUtils'
 import {
   Star,
   ArrowLeft,
@@ -21,9 +20,15 @@ import {
   Calendar,
 } from 'lucide-react'
 
+import { BookingModal } from '@/pages/BookingModal' // تأكدي من المسار الصحيح
+
 const parseData = (data: any) => {
   if (typeof data === 'string' && data.startsWith('{')) {
-    try { return JSON.parse(data) } catch (e) { return { ar: data, en: data } }
+    try {
+      return JSON.parse(data)
+    } catch (e) {
+      return { ar: data, en: data }
+    }
   }
   return data
 }
@@ -37,31 +42,33 @@ const getLocalized = (data: any, lang: 'ar' | 'en'): string => {
   return parsed ?? ''
 }
 
-// const getImageUrl = (path: string | null) => {
-//   if (!path) return '/default-service.png'
-//   if (path.startsWith('http')) return path
-//   return `${import.meta.env.VITE_API_URL || ''}/storage/${path.replace('storage/', '')}`
-// }
-
-const getImageUrl = (path: string | null) => {
-  if (!path) return '/default-service.png';
-  // إذا كان الرابط يبدأ بـ http فهو رابط سحابي (Cloudinary)
-  if (path.startsWith('http')) return path;
-  
-  // إذا كان مساراً محلياً، نقوم ببنائه بشكل آمن
-  return `${import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, "")}/storage/${path.replace('storage/', '')}`;
-};
-
 const toSlug = (text: any) => {
   const name = parseData(text)
   if (name && typeof name === 'object') {
     return name?.en?.toLowerCase().replace(/\s+/g, '-').replace(/[.]/g, '')
   }
-  return typeof name === 'string' ? name.toLowerCase().replace(/\s+/g, '-').replace(/[.]/g, '') : ''
+  return typeof name === 'string'
+    ? name.toLowerCase().replace(/\s+/g, '-').replace(/[.]/g, '')
+    : ''
+}
+
+// أسماء أيام الأسبوع مكتوبة هنا مباشرة (مش من ملفات ترجمة خارجية)
+// المفتاح هو رقم اليوم زي ما مخزن في day_of_week في الداتا بيز (0 = الأحد ... 6 = السبت)
+const DAY_NAMES: Record<number, { ar: string; en: string }> = {
+  0: { ar: 'الأحد', en: 'Sunday' },
+  1: { ar: 'الإثنين', en: 'Monday' },
+  2: { ar: 'الثلاثاء', en: 'Tuesday' },
+  3: { ar: 'الأربعاء', en: 'Wednesday' },
+  4: { ar: 'الخميس', en: 'Thursday' },
+  5: { ar: 'الجمعة', en: 'Friday' },
+  6: { ar: 'السبت', en: 'Saturday' },
+}
+
+const getDayName = (dayOfWeek: number, lang: 'ar' | 'en'): string => {
+  return DAY_NAMES[dayOfWeek]?.[lang] ?? String(dayOfWeek)
 }
 
 export const DoctorDetails = () => {
-  // 1. كل الـ Hooks توضع هنا في الأعلى (لا تضعيها أبداً بعد شروط if)
   const [isBookingOpen, setIsBookingOpen] = useState(false)
   const { slug } = useParams({ strict: false }) as { slug: string }
   const navigate = useNavigate()
@@ -72,63 +79,20 @@ export const DoctorDetails = () => {
   const doctor = (doctors as any[])?.find((d: any) => toSlug(d.name) === slug)
 
   const { data: services = [] } = useGetServices(doctor?.id)
-  const { data: schedule, isLoading: scheduleLoading } = useGetAvailability('patient', doctor?.id)
-  
-  // الـ Hook الخاص بالحجز هنا في الأعلى
-  const { mutate: bookAppointment } = useCreateAppointment()
+  const { data: schedule, isLoading: scheduleLoading } = useGetAvailability(
+    'patient',
+    doctor?.id,
+  )
+  if (doctorLoading)
+    return <div className="text-center py-20">{t('loading')}...</div>
+  if (!doctor)
+    return <div className="text-center py-20">{t('doctor_not_found')}</div>
 
-  // 2. الشروط (if) توضع بعد تعريف جميع الـ Hooks
-  if (doctorLoading) return <div className="text-center py-20">{t('loading')}...</div>
-  if (!doctor) return <div className="text-center py-20">{t('doctor_not_found')}</div>
-
-  // اسم الدكتور: من doctor.name مباشرة
   const doctorName = getLocalized(doctor.name, currentLang)
 
-  // التخصص: doctor.specialty هو object كامل (id, name, slug, image, description...)
-  // لازم نستخرج .name منه ونعمله parse مش نعمل parse على الـ object نفسه
   const specialtyName = getLocalized(doctor.specialty?.name, currentLang)
 
-  // نفس المنطق للـ bio لو ممكن يكون object برضو
   const bio = getLocalized(doctor.bio, currentLang)
-
- const handleSubmit = (e: any) => {
-  e.preventDefault();
-  
-  const dateValue = e.target.date.value;
-  const timeValue = e.target.time.value; // تأكدي أن هذا الحقل هو input type="time"
-  const serviceId = e.target.service_id.value;
-
-  // تأكدي من إرسال الوقت كما هو (HH:MM) بدون أي إضافات
-  bookAppointment(
-    {
-      doctor_id: doctor.id,
-      service_id: serviceId,
-      appointment_date: dateValue,
-      start_time: timeValue, // أرسليه كما يأتي من المتصفح (مثلاً 14:30)
-    }, 
-    {
-      onSuccess: () => {
-        toast.success(t('appointment_booked_successfully'));
-        setIsBookingOpen(false);
-      },
-onError: (error: any) => {
-  // 1. محاولة الحصول على الرسالة من عدة أماكن محتملة في رد السيرفر
-  const errorData = error.response?.data;
-  const serverMessage = errorData?.message || errorData?.error || (typeof errorData === 'string' ? errorData : null);
-
-  // 2. التحقق من الرسالة وعرضها
-  if (serverMessage && (serverMessage === 'Appointment already booked' || serverMessage.includes('already booked'))) {
-    toast.error(t('this_time_is_already_booked'));
-  } else {
-    // عرض الرسالة القادمة من السيرفر مباشرة إذا لم تكن هي رسالة الحجز
-    toast.error(serverMessage || t('something_went_wrong'));
-  }
-  
-  console.log("Full error details:", errorData);
-},
-    }
-  );
-};
 
   return (
     <div className="min-h-screen bg-slate-50 py-20 px-4" dir={i18n.dir()}>
@@ -136,16 +100,30 @@ onError: (error: any) => {
         {/* معلومات الطبيب */}
         <div className="grid md:grid-cols-3">
           <div className="p-8 flex items-center justify-center">
-            <img src={getImageUrl(doctor.image)} alt={doctorName} className="w-full h-full object-cover rounded-2xl" />
+            <img
+              src={getImageUrl(doctor.image)}
+              alt={doctorName}
+              className="w-full h-full object-cover rounded-2xl"
+              onError={(e) => (e.currentTarget.src = '/default-avatar.png')}
+            />{' '}
           </div>
           <div className="md:col-span-2 p-8">
-            <button onClick={() => navigate({ to: '..' })} className="text-[#2D6A4F] mb-6 font-bold flex items-center gap-2">
-              {i18n.dir() === 'rtl' ? <ArrowRight /> : <ArrowLeft />} {t('back')}
+            <button
+              onClick={() => navigate({ to: '..' })}
+              className="text-[#2D6A4F] mb-6 font-bold flex items-center gap-2"
+            >
+              {i18n.dir() === 'rtl' ? <ArrowRight /> : <ArrowLeft />}{' '}
+              {t('back')}
             </button>
-            <h1 className="text-4xl font-black text-[#0E2A2E] mb-2">{doctorName}</h1>
-            <p className="text-[#2D6A4F] text-xl font-bold mb-4">{specialtyName}</p>
+            <h1 className="text-4xl font-black text-[#0E2A2E] mb-2">
+              {doctorName}
+            </h1>
+            <p className="text-[#2D6A4F] text-xl font-bold mb-4">
+              {specialtyName}
+            </p>
             <div className="flex items-center gap-2 bg-amber-50 text-amber-600 px-3 py-1 rounded-lg w-fit mb-6">
-              <Star size={18} fill="currentColor" /> {Number(doctor.rating || 5).toFixed(1)}
+              <Star size={18} fill="currentColor" />{' '}
+              {Number(doctor.rating || 5).toFixed(1)}
             </div>
             <p className="text-slate-600 leading-relaxed">{bio}</p>
           </div>
@@ -193,7 +171,7 @@ onError: (error: any) => {
           </div>
         </div>
 
-        {/* قسم المواعيد - المعدل ليعمل بشكل صحيح */}
+        {/* قسم المواعيد - أسماء الأيام بقت من DAY_NAMES مباشرة، مش من ملفات ترجمة خارجية */}
         <div className="p-8 border-t">
           <h2 className="text-2xl font-black text-[#0E2A2E] mb-8 flex items-center gap-3">
             <div className="p-2 bg-[#2D6A4F]/10 rounded-lg text-[#2D6A4F]">
@@ -208,14 +186,11 @@ onError: (error: any) => {
             <div className="grid md:grid-cols-3 gap-4">
               {schedule.map((av: any, index: number) => (
                 <div
-                  key={av.id || index} // هنا التعديل: إضافة الـ key
+                  key={av.id || index}
                   className="flex justify-between items-center bg-slate-50 p-4 rounded-2xl border border-slate-100"
                 >
                   <span className="font-bold text-slate-700 capitalize">
-                    {/* عرض اسم اليوم */}
-                    {typeof av.day_name === 'object' && av.day_name !== null
-                      ? getLocalized(av.day_name, currentLang)
-                      : av.day_name || t(`days.${av.day_of_week}`)}
+                    {getDayName(Number(av.day_of_week), currentLang)}
                   </span>
 
                   <span className="text-[#2D6A4F] font-mono bg-white px-3 py-1 rounded-lg text-sm font-bold shadow-sm">
@@ -257,36 +232,14 @@ onError: (error: any) => {
             <Calendar size={20} />
             {t('book_now')}
           </button>
-  {isBookingOpen && (
-          <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl w-full max-w-md shadow-2xl">
-              <h2 className="text-xl font-black mb-4">{t('book_now')}</h2>
-              
-              <input name="date" type="date" className="w-full p-3 border rounded-xl mb-3" required />
-              <input name="time" type="time" className="w-full p-3 border rounded-xl mb-3" required />
-              
-              <select name="service_id" className="w-full p-3 border rounded-xl mb-4" required>
-                {services.map((s: any) => (
-                  <option key={s.id} value={s.id}>
-                    {getLocalized(s.name, 'en')}
-                  </option>
-                ))}
-              </select>
-              
-              <button type="submit" className="bg-[#2D6A4F] text-white w-full py-3 rounded-xl font-bold">
-                {t('confirm')}
-              </button>
-              
-              <button 
-                type="button" 
-                onClick={() => setIsBookingOpen(false)} 
-                className="w-full mt-2 text-gray-500 font-bold py-3"
-              >
-                {t('cancel')}
-              </button>
-            </form>
-          </div>
-        )}
+          {/* استبدلي الـ form القديم بهذا المكون فقط */}
+          <BookingModal
+            isOpen={isBookingOpen}
+            onClose={() => setIsBookingOpen(false)}
+            doctorId={doctor.id}
+            services={services}
+            getLocalized={getLocalized}
+          />
         </div>
       </div>
     </div>

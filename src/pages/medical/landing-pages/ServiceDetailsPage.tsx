@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import { useGetServicesWithSpecialties } from '@/hooks/useQuery'
 import { BookingModal } from '@/pages/BookingModal'
+import { getImageUrl } from '@/utils/imageUtils'
 
 export const ServiceDetailsPage = () => {
   const { id } = useParams({ strict: false }) as { id: string }
@@ -29,6 +30,21 @@ export const ServiceDetailsPage = () => {
     () => services.find((s: any) => s.id.toString() === id),
     [services, id],
   )
+
+  const getLocalized = (data: any, lang: 'ar' | 'en') => {
+    if (!data) return ''
+    // إذا كانت نصاً (JSON string) نقوم بتحويلها
+    let parsed = data
+    if (typeof data === 'string' && data.startsWith('{')) {
+      try {
+        parsed = JSON.parse(data)
+      } catch {
+        return data
+      }
+    }
+    // إذا كانت كائناً، نرجع القيمة بناءً على اللغة
+    return parsed[lang] || parsed.en || parsed.ar || data
+  }
 
   if (isLoading)
     return (
@@ -70,22 +86,14 @@ export const ServiceDetailsPage = () => {
                   alt={service.name[currentLang]} 
                   className="w-full h-[450px] object-cover rounded-[2rem]"
                 /> */}
-
                 <img
-                  src={
-                    service.image_url
-                      ? service.image_url.startsWith('http')
-                        ? service.image_url
-                        : `${import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '')}/storage/${service.image_url.replace('storage/', '')}`
-                      : '/default-service.png'
-                  }
-                  alt={service.name[currentLang]}
+                  src={getImageUrl(service.image_url, 'service')}
+                  alt={getLocalized(service.name, currentLang)}
                   className="w-full h-[450px] object-cover rounded-[2rem]"
                 />
                 <div className="absolute top-6 left-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full text-emerald-900 font-bold flex items-center gap-2 shadow-sm text-sm">
                   <Sparkles size={16} />{' '}
-                  {service.specialty_name?.[currentLang] ||
-                    service.specialty_name}
+                  {getLocalized(service.specialty_name, currentLang)}{' '}
                 </div>
               </div>
             </div>
@@ -95,7 +103,7 @@ export const ServiceDetailsPage = () => {
           <div className="md:col-span-7 space-y-8">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-6xl font-black text-[#0E2A2E] leading-[1.1]">
-                {service.name[currentLang]}
+                {getLocalized(service.name, currentLang)}{' '}
               </h1>
               <p className="text-slate-500 text-lg leading-relaxed">
                 {t('professional_service_description', {
@@ -116,7 +124,7 @@ export const ServiceDetailsPage = () => {
                     {t('doctor')}
                   </p>
                   <p className="font-bold text-slate-800">
-                    {service.doctor?.name[currentLang]}
+                    {getLocalized(service.doctor?.name, currentLang)}{' '}
                   </p>
                 </div>
               </div>

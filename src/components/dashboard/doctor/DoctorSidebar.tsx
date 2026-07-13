@@ -6,8 +6,7 @@ export const DoctorSidebar = () => {
   const { t } = useTranslation();
 const doctorId = localStorage.getItem('doctorId'); // طريقة بديلة لجلب الـ ID بدون Context
   return (
-    <aside className="fixed top-0 start-0 h-full w-20 md:w-64 bg-white border-e border-gray-100 shadow-sm z-40 transition-all duration-300">
-      {/* الشعار */}
+<aside className="sticky top-15 start-0 h-screen w-20 md:w-64 bg-white border-e border-gray-100 shadow-sm z-10 transition-all duration-300">      {/* الشعار */}
       <div className="h-20 flex items-center justify-center border-b border-gray-50">
         <div className="bg-[#2D6A4F] p-2 rounded-xl text-white">
           <Stethoscope size={24} />
