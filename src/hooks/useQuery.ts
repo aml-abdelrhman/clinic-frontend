@@ -919,4 +919,14 @@ export const useDeleteReview = () => {
   })
 }
 
+export const useGetAdminStats = () => {
+  return useQuery({
+    queryKey: ['adminStats'],
+    queryFn: async () => {
+      const { data } = await api.get('/admin/dashboard-stats');
+      return data;
+    }
+  });
+};
+
  

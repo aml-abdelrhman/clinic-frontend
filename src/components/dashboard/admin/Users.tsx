@@ -6,7 +6,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button'
 import { Trash2, Loader2, UserCog, Mail } from 'lucide-react'
 
-// تعريف الترجمات هنا مباشرة
 const translations = {
   ar: {
     "name": "الاسم",
@@ -32,11 +31,24 @@ const translations = {
   }
 };
 
+// 1. تعريف المكون هنا في الخارج لضمان استقرار الـ Build
+const RoleSelect = ({ user, handleRoleChange, t_local }: { user: any, handleRoleChange: any, t_local: any }) => (
+  <Select value={user.role} onValueChange={(val) => handleRoleChange(user.id, val)}>
+    <SelectTrigger className="w-full sm:w-[150px] border-[#2D6A4F]/20 focus:ring-[#2D6A4F]">
+      <SelectValue placeholder={t_local(user.role)} />
+    </SelectTrigger>
+    <SelectContent className="bg-white border-slate-200 shadow-xl">
+      <SelectItem value="patient">{t_local('patient')}</SelectItem>
+      <SelectItem value="doctor">{t_local('doctor')}</SelectItem>
+      <SelectItem value="admin">{t_local('admin')}</SelectItem>
+    </SelectContent>
+  </Select>
+)
+
 export default function AdminUsersDashboard() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const lang = i18n.language === 'ar' ? 'ar' : 'en';
   
-  // دالة مساعدة للترجمة من الكائن المدمج
   const t_local = (key: string) => translations[lang][key as keyof typeof translations['ar']] || key;
 
   const { data: users, isLoading, refetch } = useGetUsers()
@@ -57,19 +69,6 @@ export default function AdminUsersDashboard() {
     <div className="flex justify-center items-center h-screen">
       <Loader2 className="animate-spin h-10 w-10 text-[#2D6A4F]" />
     </div>
-  )
-
-  const RoleSelect = ({ user }: { user: any }) => (
-    <Select value={user.role} onValueChange={(val) => handleRoleChange(user.id, val)}>
-      <SelectTrigger className="w-full sm:w-[150px] border-[#2D6A4F]/20 focus:ring-[#2D6A4F]">
-        <SelectValue placeholder={t_local(user.role)} />
-      </SelectTrigger>
-      <SelectContent className="bg-white border-slate-200 shadow-xl">
-        <SelectItem value="patient">{t_local('patient')}</SelectItem>
-        <SelectItem value="doctor">{t_local('doctor')}</SelectItem>
-        <SelectItem value="admin">{t_local('admin')}</SelectItem>
-      </SelectContent>
-    </Select>
   )
 
   return (
@@ -97,7 +96,7 @@ export default function AdminUsersDashboard() {
             </div>
             <div className="mt-3">
               <label className="text-xs font-medium text-gray-400 mb-1 block">{t_local('role')}</label>
-              <RoleSelect user={user} />
+              <RoleSelect user={user} handleRoleChange={handleRoleChange} t_local={t_local} />
             </div>
           </div>
         ))}
@@ -120,7 +119,7 @@ export default function AdminUsersDashboard() {
                 <tr key={user.id} className="border-b border-slate-100 hover:bg-slate-50 transition-all">
                   <td className="p-5 font-medium text-[#0E2A2E]">{user.name}</td>
                   <td className="p-5 text-gray-600">{user.email}</td>
-                  <td className="p-5"><RoleSelect user={user} /></td>
+                  <td className="p-5"><RoleSelect user={user} handleRoleChange={handleRoleChange} t_local={t_local} /></td>
                   <td className="p-5 text-center">
                     <Button variant="ghost" size="sm" onClick={() => handleDelete(user.id)} className="text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-full">
                       <Trash2 size={20} />
