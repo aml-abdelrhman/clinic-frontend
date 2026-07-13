@@ -4,22 +4,14 @@ const CLOUDINARY_BASE_URL = import.meta.env.VITE_CLOUDINARY_BASE_URL || "";
 const DEFAULT_AVATAR = "/default-avatar.png";
 const DEFAULT_PLACEHOLDER = "/placeholder.jpg";
 
-export const getImageUrl = (path?: string | null): string => {
-  if (!path) return '/default-avatar.png';
-  
-  // إذا كان الرابط جاهزاً، لا نفعل شيئاً
+export const getImageUrl = (path?: string | null, type: 'avatar' | 'service' = 'avatar'): string => {
+  if (!path) return type === 'avatar' ? DEFAULT_AVATAR : DEFAULT_PLACEHOLDER;
+
+  // إذا كان الرابط يبدأ بـ http، فهو رابط جاهز (Cloudinary أو غيره)
   if (path.startsWith('http')) return path;
 
-  // تنظيف المسار
-  const cleanPath = path
-    .replace(/^api\/storage\//, '')
-    .replace(/^storage\//, '')
-    .replace(/^\//, '');
+  // تنظيف المسار (إزالة الشرطة في البداية وكلمة storage إن وجدت)
+  const cleanPath = path.replace(/^\//, '').replace(/^storage\//, '');
   
-  const finalUrl = `${import.meta.env.VITE_CLOUDINARY_BASE_URL || "https://res.cloudinary.com/dfgdtlfhg/image/upload/"}${cleanPath}`;
-  
-  // هذا السطر سيخبرك بالمسار الذي يحاول المتصفح تحميله
-  console.log("🛠️ Image Path Analysis:", { original: path, final: finalUrl });
-  
-  return finalUrl;
+  return `${CLOUDINARY_BASE_URL}${cleanPath}`;
 };

@@ -924,9 +924,8 @@ export const useGetAdminStats = () => {
     queryKey: ['adminStats'],
     queryFn: async () => {
       const { data } = await api.get('/admin/dashboard-stats');
-      return data;
+      return data.data;
     }
   });
 };
-
  

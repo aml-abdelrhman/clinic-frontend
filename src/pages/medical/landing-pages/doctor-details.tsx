@@ -101,22 +101,11 @@ export const DoctorDetails = () => {
         <div className="grid md:grid-cols-3">
           <div className="p-8 flex items-center justify-center">
             <img
-              src={getImageUrl(doctor.image || doctor.image_url)}
+              src={getImageUrl(doctor.image)}
               alt={doctorName}
               className="w-full h-full object-cover rounded-2xl"
-              onError={(e) => {
-                // هذا الكود سيكشف لك تفاصيل الفشل
-                const target = e.currentTarget
-                console.error('❌ Image failed to load!', {
-                  attemptedUrl: target.src,
-                  doctorName: doctorName,
-                  originalData: doctor.image || doctor.image_url,
-                })
-
-                // تغيير الصورة للصورة الافتراضية
-                target.src = '/default-avatar.png'
-              }}
-            />
+              onError={(e) => (e.currentTarget.src = '/default-avatar.png')}
+            />{' '}
           </div>
           <div className="md:col-span-2 p-8">
             <button
