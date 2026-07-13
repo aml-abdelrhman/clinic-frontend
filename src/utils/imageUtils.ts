@@ -1,22 +1,17 @@
-// src/utils/imageUtils.ts
-
-const CLOUDINARY_BASE_URL = import.meta.env.VITE_CLOUDINARY_BASE_URL || "";
-const DEFAULT_AVATAR = "/default-avatar.png";
-const DEFAULT_PLACEHOLDER = "/placeholder.jpg";
-
-export const getImageUrl = (path?: string | null, type: 'avatar' | 'service' = 'avatar'): string => {
-  if (!path) return type === 'avatar' ? DEFAULT_AVATAR : DEFAULT_PLACEHOLDER;
+export const getImageUrl = (path?: string | null): string => {
+  // إذا كانت القيمة فارغة، نرجع الصورة الافتراضية
+  if (!path) return '/default-avatar.png';
+  
+  // إذا كان الرابط جاهزاً (بدأ بـ http)، نرجعه كما هو
   if (path.startsWith('http')) return path;
 
-  // 1. استخراج اسم المجلد والملف (مثلاً: doctors/filename.jpg)
-  // الـ API يرسل api/storage/doctors/filename.jpg
-  // نقوم بحذف كل ما قبل اسم المجلد (doctors أو specialties)
-  const parts = path.split('/');
-  const folder = parts[parts.length - 2]; // مثل doctors
-  const filename = parts[parts.length - 1]; // مثل filename.jpg
-  
-  const cleanPath = `${folder}/${filename}`;
-  
-  // 2. إرجاع الرابط الكامل (بدون v1783... لأن Cloudinary سيضيفه تلقائياً)
-  return `${CLOUDINARY_BASE_URL}${cleanPath}`;
+  // تنظيف المسار: إزالة أي بادئات زائدة قد يرسلها الـ API
+  // هذا يضمن أننا نأخذ فقط اسم المجلد والملف (مثلاً doctors/name.jpg)
+  const cleanPath = path
+    .replace(/^api\/storage\//, '')
+    .replace(/^storage\//, '')
+    .replace(/^\//, '');
+
+  // دمج مع الرابط الأساسي
+  return `${import.meta.env.VITE_CLOUDINARY_BASE_URL || "https://res.cloudinary.com/dfgdtlfhg/image/upload/"}${cleanPath}`;
 };

@@ -101,11 +101,14 @@ export const DoctorDetails = () => {
         <div className="grid md:grid-cols-3">
           <div className="p-8 flex items-center justify-center">
             <img
-              src={getImageUrl(doctor.image)}
+              src={getImageUrl(doctor.image || doctor.image_url)}
               alt={doctorName}
               className="w-full h-full object-cover rounded-2xl"
-              onError={(e) => (e.currentTarget.src = '/default-avatar.png')}
-            />{' '}
+              // نغير الرابط الافتراضي في حالة الخطأ ليكون المسار الصحيح
+              onError={(e) => {
+                e.currentTarget.src = '/default-avatar.png'
+              }}
+            />
           </div>
           <div className="md:col-span-2 p-8">
             <button
