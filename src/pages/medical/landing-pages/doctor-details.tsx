@@ -104,9 +104,17 @@ export const DoctorDetails = () => {
               src={getImageUrl(doctor.image || doctor.image_url)}
               alt={doctorName}
               className="w-full h-full object-cover rounded-2xl"
-              // نغير الرابط الافتراضي في حالة الخطأ ليكون المسار الصحيح
               onError={(e) => {
-                e.currentTarget.src = '/default-avatar.png'
+                // هذا الكود سيكشف لك تفاصيل الفشل
+                const target = e.currentTarget
+                console.error('❌ Image failed to load!', {
+                  attemptedUrl: target.src,
+                  doctorName: doctorName,
+                  originalData: doctor.image || doctor.image_url,
+                })
+
+                // تغيير الصورة للصورة الافتراضية
+                target.src = '/default-avatar.png'
               }}
             />
           </div>
