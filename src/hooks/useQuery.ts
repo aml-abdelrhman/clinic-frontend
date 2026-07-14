@@ -351,7 +351,9 @@ export const useUpdatedoctorService = () => {
       return response.data
     },
     onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['services'] })
       queryClient.invalidateQueries({ queryKey: ['doctorServices'] })
+   
     },
   })
 }
@@ -382,6 +384,7 @@ export const useAddDoctorService = () => {
       return response.data
     },
     onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['services'] })
       queryClient.invalidateQueries({ queryKey: ['doctorServices'] })
     },
   })
@@ -546,8 +549,10 @@ export const useUpdateAppointmentStatus = () => {
         `/doctor/appointments/${id}/${status === 'cancelled' ? 'cancel' : 'confirm'}`,
         { status },
       ),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ['doctor-appointments'] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['doctor-appointments'] })
+       queryClient.invalidateQueries({ queryKey: ['my-appointments'] })
+   },
   })
 }
 

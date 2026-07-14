@@ -27,8 +27,16 @@ export default function DoctorAppointments() {
   const [loadingId, setLoadingId] = useState<number | null>(null)
 
   useEffect(() => {
-    if (appointments) setLocalAppointments(appointments)
-  }, [appointments])
+    if (appointments && appointments.length > 0) {
+      const sorted = [...appointments].sort((a, b) => {
+        return (
+          new Date(b.appointment_date).getTime() -
+          new Date(a.appointment_date).getTime()
+        )
+      })
+      setLocalAppointments(sorted)
+    }
+  }, [appointments]) // سيتم الترتيب فقط عند تغير بيانات المواعيد القادمة من السيرفر
 
   const handleCancel = (id: number) => {
     if (!window.confirm(t('are_you_sure_to_cancel'))) return

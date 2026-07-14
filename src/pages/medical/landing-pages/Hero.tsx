@@ -112,7 +112,7 @@ export function Hero() {
                       onClick={() =>
                         navigate({
                           to: '/specialties/$slug',
-                          params: { slug: getSlug(s.name) },
+                          params: { slug: s.slug || getSlug(s.name) },
                           search: { id: s.id },
                         })
                       }

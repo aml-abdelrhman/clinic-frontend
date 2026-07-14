@@ -145,7 +145,7 @@ export default function AdminServicesManagement() {
                 <TableHead>الخدمة</TableHead>
                 <TableHead>الطبيب</TableHead>
                 <TableHead>السعر</TableHead>
-                <TableHead>الحالة</TableHead>
+                <TableHead>       </TableHead>
                 <TableHead className="text-center">تحكم</TableHead>
               </TableRow>
             </TableHeader>
@@ -194,12 +194,12 @@ export default function AdminServicesManagement() {
                     </TableCell>
                     <TableCell>{service.price} ج.م</TableCell>
                     <TableCell>
-                      <Switch
+                      {/* <Switch
                         checked={!!service.is_active}
                         onCheckedChange={() =>
                           handleToggleStatus(service.id, !!service.is_active)
                         }
-                      />
+                      /> */}
                     </TableCell>
                     <TableCell className="text-center">
                       <Button
